@@ -34,6 +34,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'avatar' => ['nullable', 'image', 'max:2048']
         ]);
 
         $user = User::create([
@@ -41,6 +42,17 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        // Store the avatar if provided
+        if ($request->hasFile('avatar')) {
+                $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+        }
+        
+        // Retrieve the avatar URL
+        $avatarUrl = null;
+        if ($user->hasMedia('avatars')) {
+                $avatarUrl = $user->getFirstMediaUrl('avatars');
+        }
 
         event(new Registered($user));
 
