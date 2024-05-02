@@ -26,6 +26,11 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+
+        if ($request->hasFile('avatar')) {
+            $request->user()->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+        }
+
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {

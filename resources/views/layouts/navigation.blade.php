@@ -25,10 +25,10 @@
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                             <!-- User Avatar -->
                             @if (Auth::user()->hasMedia('avatars'))
-                                <img class="h-8 w-8 rounded-full mr-1" src="{{ Auth::user()->getFirstMediaUrl('avatars') }}" alt="{{ Auth::user()->name }}" />
+                                <img class="h-8 w-8 rounded-full mr-1" src="{{ Auth::user()->getMedia('avatars')->last()->getUrl() }}" alt="{{ Auth::user()->name }}" />
                             @else
                             <!-- If user does not have an avatar, display a default image -->
-                                <img class="h-8 w-8 rounded-full mr-1" src="/assets/images/avatars/default-avatar.png" alt="{{ Auth::user()->name }}" />
+                                <img class="h-8 w-8 rounded-full mr-1" src="{{ asset('assets/images/avatars/default-avatar.png') }}" alt="{{ Auth::user()->name }}" />
                             @endif
                             
                             <div>{{ Auth::user()->name }}</div>
@@ -84,10 +84,10 @@
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
                 @if (Auth::user()->hasMedia('avatars'))
-                    <img class="h-10 w-10 rounded-full mb-1" src="{{ Auth::user()->getFirstMediaUrl('avatars') }}" alt="{{ Auth::user()->name }}" />
+                    <img class="h-10 w-10 rounded-full mb-1" src="{{ Auth::user()->getMedia('avatars')->last()->getUrl() }}" alt="{{ Auth::user()->name }}" />
                 @else
                 <!-- If user does not have an avatar, display a default image -->
-                    <img class="h-10 w-10 rounded-full mb-1" src="/assets/images/avatars/default-avatar.png" alt="{{ Auth::user()->name }}" />
+                    <img class="h-10 w-10 rounded-full mb-1" src="{{ asset('assets/images/avatars/default-avatar.png') }}" alt="{{ Auth::user()->name }}" />
                 @endif
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
