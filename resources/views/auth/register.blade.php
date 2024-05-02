@@ -43,7 +43,7 @@
         <!-- Profile Avatar -->
         <div class="mt-4">
             <x-input-label for="avatar" :value="__('Profile Avatar')" />
-            <x-file-input id="avatar" class="block mt-1 w-full" type="file" name="avatar" required />
+            <x-file-input id="avatar" class="block mt-1 w-full" type="file" name="avatar" />
             <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
         </div>
 
