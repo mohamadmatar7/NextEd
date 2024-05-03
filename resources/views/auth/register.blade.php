@@ -31,6 +31,19 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- Role -->
+        <div class="mt-4">
+            <x-input-label for="role" :value="__('template.Role')" />
+            <x-select id="role" class="block mt-1 w-full" name="role" required>
+                <option value="0" selected>{{ __('template.Select.student') }}</option>
+                <option value="1">{{ __('template.Select.teacher') }}</option>
+                <option value="2">{{ __('template.Select.instructor') }}</option>
+                <option value="3">{{ __('template.Select.principal') }}</option>
+                <option value="4">{{ __('template.Select.admin') }}</option>
+            </x-select>
+            <x-input-error :messages="$errors->get('role')" class="mt-2" />
+        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('template.Password')" />

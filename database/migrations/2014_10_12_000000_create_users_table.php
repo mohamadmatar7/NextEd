@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->integer('role'); // 0 = student, 1 = teacher, 2 = instructor, 3 = principal, 4 = admin
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->rememberToken();

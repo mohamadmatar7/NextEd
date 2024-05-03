@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,34 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+// dashboard based on the user's role
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', function () {
+        $user_role = Auth::user()->role;
+
+        switch ($user_role) {
+            case 0:
+                return view('roles.student.dashboard');
+                break;
+            case 1:
+                return view('roles.teacher.dashboard');
+                break;
+            case 2:
+                return view('roles.instructor.dashboard');
+                break;
+            case 3:
+                return view('roles.principal.dashboard');
+                break;
+            case 4:
+                return view('roles.admin.dashboard');
+                break;
+        }
+    })->name('dashboard');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

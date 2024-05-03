@@ -45,4 +45,41 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+
+    // protected function authenticated(Request $request, $user)
+    // {
+    //     $credentials = $request->only('email', 'password');
+
+    //     if (Auth::attempt($credentials)) {
+    //         $user_role = Auth::user()->role;
+
+    //         switch ($user_role) {
+    //             case 0:
+    //                 return redirect()->route('student.dashboard');
+    //                 break;
+    //             case 1:
+    //                 return redirect()->route('teacher.dashboard');
+    //                 break;
+    //             case 2:
+    //                 return redirect()->route('instructor.dashboard');
+    //                 break;
+    //             case 3:
+    //                 return redirect()->route('principal.dashboard');
+    //                 break;
+    //             case 4:
+    //                 return redirect()->route('admin.dashboard');
+    //                 break;
+    //             default:
+    //                 Auth::logout();
+    //                 return redirect()->route('login')->with('error', 'Invalid role');
+    //         }
+
+    //     } else {
+    //         return redirect()->route('login');
+    //     }
+    // }
+
+
 }
+
+

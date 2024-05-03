@@ -37,6 +37,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255',
             'regex:/^.*@nexted\.school$/',
             'unique:'.User::class],
+            'role' => ['required', 'integer', 'min:0', 'max:4'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'avatar' => ['nullable', 'image', 'max:2048']
         ]);
@@ -46,7 +47,9 @@ class RegisteredUserController extends Controller
             'last_name' => $request->last_name,
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
             'password' => Hash::make($request->password),
+
         ]);
 
         // Store the avatar if provided
