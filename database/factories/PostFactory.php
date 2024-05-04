@@ -17,7 +17,9 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'body' => $this->faker->paragraph(),
+            'user_id' => \App\Models\User::factory(),
+            'created_at' => fake()->dateTimeBetween('-1 years', 'now'),
         ];
     }
 }
