@@ -25,9 +25,20 @@
 
 
         <div class="flex flex-col">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Welcome to our blog</h1>
+            <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
+                @csrf
+                <x-textarea :name="'body'" :label="'Post something'" :placeholder="'What is on your mind?'" />
+                <x-file-input name="image" type="file" id="image" />
+                <x-primary-button>Post</x-primary-button>
+            </form>
+
             @foreach ($posts as $post)
             <div class="p-4 mt-4 bg-white dark:bg-gray-800 shadow-md rounded-lg">
                 <p class="mt-2 text-gray-600 dark:text-gray-400">{{ $post->body }}</p>
+                @if ($post->getFirstMedia('post-images'))
+                <img src="{{ $post->getMedia('post-images')->last()->getUrl() }}" alt="{{ $post->user->name }}" />
+                @endif
                 @include('sections.comments' , ['comments' => $post->comments])
             </div>
             @endforeach

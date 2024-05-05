@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
+
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 });
 

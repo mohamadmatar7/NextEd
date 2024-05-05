@@ -23,8 +23,21 @@
             @else
                 <div>
             @endif
-                <x-comment :comment="$comment" :userName="$comment->user->name" :avatar="asset('assets/images/avatars/default-avatar.png')" :commentDate="$comment->created_at->diffForHumans()" :commentBody="$comment->body" :id="$comment->id" userId="{{ $comment->user_id }}" />
+                @php
+                    $avatarUrl = $comment->user->getFirstMedia('avatars')
+                        ? $comment->user->getMedia('avatars')->last()->getUrl()
+                        : asset('assets/images/avatars/default-avatar.png');
+                @endphp
 
+                <x-comment 
+                    :comment="$comment" 
+                    :userName="$comment->user->name" 
+                    :avatar="$avatarUrl" 
+                    :commentDate="$comment->created_at->diffForHumans()" 
+                    :commentBody="$comment->body" 
+                    :id="$comment->id" 
+                    userId="{{ $comment->user_id }}" 
+                />
                 @foreach ($comment->replies as $reply)
                     <x-comment :comment="$reply" :userName="$reply->user->name" :avatar="asset('assets/images/avatars/default-avatar.png')" :commentDate="$reply->created_at->diffForHumans()" :commentBody="$reply->body" :class="'ml-3 lg:ml-12'" :id="$reply->id" userId="{{ $reply->user_id }}" />
                 @endforeach

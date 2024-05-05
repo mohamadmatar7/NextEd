@@ -11,7 +11,7 @@
                     $commentDate }}</time></p>
         </div>
 
-        @if (auth()->check() && auth()->user()->id == $userId)
+        @if (auth()->check() && auth()->user()->id == $userId || auth()->check() && auth()->user()->role == 4)
 
         <x-dropdown-comment  />
         

@@ -29,12 +29,22 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'content' => 'required',
+            'body' => 'required',
+            'image' => 'nullable|image|max:4096',
         ]);
 
 
+        if ($request->hasFile('image')) {
+            $post = Post::create([
+                'body' => $request->body,
+                'user_id' => auth()->id(),
+            ]);
+
+            $post->addMediaFromRequest('image')->toMediaCollection('post-images');
+            return back();
+        }
         Post::create([
-            'content' => $request->content,
+            'body' => $request->body,
             'user_id' => auth()->id(),
         ]);
 
@@ -62,7 +72,29 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        
+        $request->validate([
+            'body' => 'required',
+            'image' => 'nullable|image|max:4096',
+        ]);
+
+        $post = Post::findOrFail($post->id);
+
+        if ($post->user_id !== auth()->id()) {
+            return back();
+        }
+
+        $post->update([
+            'body' => $request->body,
+        ]);
+
+        if ($request->hasFile('image')) {
+            $post->clearMediaCollection('post-images');
+            $post->addMediaFromRequest('image')->toMediaCollection('post-images');
+        }
+
+        return back();
+
     }
 
     /**
@@ -70,6 +102,14 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post = Post::findOrFail($post->id);
+
+        if ($post->user_id !== auth()->id()) {
+            return back();
+        }
+
+        $post->delete();
+
+        return back();
     }
 }

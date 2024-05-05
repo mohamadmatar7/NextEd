@@ -5,9 +5,11 @@ namespace App\Models;
 use App\Traits\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 
-class Post extends Model
+class Post extends Model implements HasMedia
 {
 
     protected $fillable = [
@@ -16,8 +18,7 @@ class Post extends Model
         // Add other fillable properties as needed
     ];
     
-    use HasFactory, Likeable;
-
+    use HasFactory, Likeable, InteractsWithMedia;
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -27,6 +28,5 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
-
 
 }
