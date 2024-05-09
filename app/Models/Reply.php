@@ -15,6 +15,7 @@ class Reply extends Model
         'body',
         'comment_id',
         'user_id',
+        'parent_id'
         // Add other fillable properties as needed
     ];
 
@@ -26,6 +27,16 @@ class Reply extends Model
     public function user() 
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function parent() 
+    {
+        return $this->belongsTo(Reply::class, 'parent_id');
+    }
+
+    public function children() 
+    {
+        return $this->hasMany(Reply::class, 'parent_id');
     }
 
 }

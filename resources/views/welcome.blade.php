@@ -25,7 +25,6 @@
 
 
         <div class="flex flex-col">
-            <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Welcome to our blog</h1>
             <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                 @csrf
                 <x-textarea :name="'body'" :label="'Post something'" :placeholder="'What is on your mind?'" />
@@ -34,11 +33,16 @@
             </form>
 
             @foreach ($posts as $post)
+            {{ dump($post) }}
             <div class="p-4 mt-4 bg-white dark:bg-gray-800 shadow-md rounded-lg">
                 <p class="mt-2 text-gray-600 dark:text-gray-400">{{ $post->body }}</p>
                 @if ($post->getFirstMedia('post-images'))
                 <img src="{{ $post->getMedia('post-images')->last()->getUrl() }}" alt="{{ $post->user->name }}" />
                 @endif
+                <button type="button" onclick="likePost('{{ $post->id }}')">
+                    Like
+                </button>
+                <span id="likeCount_{{ $post->id }}">{{ $post->likes->count() }}</span>
                 @include('sections.comments' , ['comments' => $post->comments])
             </div>
             @endforeach
@@ -46,6 +50,32 @@
 
         @endif
     </div>
+    <script>
+        function likePost(postId) {
+            // Send AJAX request
+            $.ajax({
+                url: '/like/post/' + postId,
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    post_id: postId
+                },
+                success: function(response) {
+                    // Update UI based on response
+                    if (response.success) {
+                        // Update like count in the UI
+                        $('#likeCount_' + postId).text(response.likeCount);
+                    }
+                },
+                error: function(xhr) {
+                    // Handle error
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    </script>
+    
+    
 </body>
 
 </html>

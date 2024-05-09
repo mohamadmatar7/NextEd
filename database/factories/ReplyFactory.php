@@ -22,4 +22,18 @@ class ReplyFactory extends Factory
             'user_id' => \App\Models\User::factory(),
         ];
     }
+
+    /**
+     * Indicate that the reply is a reply to another reply.
+     *
+     * @param  int  $id
+     * @return \Database\Factories\ReplyFactory
+     */
+    public function replyTo(int $id): ReplyFactory
+    {
+        return $this->state(fn (array $attributes) => [
+            'parent_id' => $id,
+        ]);
+    }
+    
 }

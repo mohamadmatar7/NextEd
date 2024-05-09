@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,11 @@ Route::middleware('auth')->group(function () {
 
 
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+
+    Route::post('/like/comment/{comment}', [LikeController::class, 'likeComment'])->name('like.comment');
+    Route::post('/like/reply/{reply}', [LikeController::class, 'likeReply'])->name('like.reply');
+    Route::post('/like/post/{id}', [LikeController::class, 'likePost'])->name('like.post');
+
 
 
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');

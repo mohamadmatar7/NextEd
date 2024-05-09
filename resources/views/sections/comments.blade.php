@@ -35,14 +35,51 @@
                     :avatar="$avatarUrl" 
                     :commentDate="$comment->created_at->diffForHumans()" 
                     :commentBody="$comment->body" 
-                    :id="$comment->id" 
+                    :itemType="'comment'"
+                    :route="route('like.comment', $comment->id)"
+                    :likesCount="$comment->likes->count()"
+                    :hidden=true
+                    :Id="$comment->id"
                     userId="{{ $comment->user_id }}" 
                 />
                 @foreach ($comment->replies as $reply)
-                    <x-comment :comment="$reply" :userName="$reply->user->name" :avatar="asset('assets/images/avatars/default-avatar.png')" :commentDate="$reply->created_at->diffForHumans()" :commentBody="$reply->body" :class="'ml-3 lg:ml-12'" :id="$reply->id" userId="{{ $reply->user_id }}" />
+                    <x-comment 
+                    :comment="$reply" 
+                    :userName="$reply->user->name" 
+                    :avatar="asset('assets/images/avatars/default-avatar.png')" 
+                    :commentDate="$reply->created_at->diffForHumans()" 
+                    :commentBody="$reply->body" 
+                    :class="'ml-3 lg:ml-12'"
+                    :itemType="'reply'"
+                    :likesCount="$reply->likes->count()"
+                    :hidden=false 
+                    :Id="$reply->id" 
+                    :route="route('like.reply', $reply->id)" 
+                    userId="{{ $reply->user_id }}" />
                 @endforeach
             </div>
         @endforeach
     </div>
 </section>
 
+<script>
+        function likeItem(itemId, route, isComment, itemType) {
+        // Send AJAX request
+        $.ajax({
+            url: route,
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+                [isComment ? 'comment_id' : 'reply_id']: itemId
+            },
+            success: function(response) {
+                if (response.success) {
+                    $('#likeCounts_' + itemType + '_' + itemId).text(response.likeCount);
+                }
+            },
+            error: function(response) {
+                console.log(response);
+            }
+        });
+    }
+</script>

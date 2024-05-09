@@ -28,7 +28,19 @@ class ReplyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'body' => 'required',
+            'parent_id' => 'nullable|exists:replies,id',
+        ]);
+
+        $reply = new Reply();
+        $reply->body = $request->body;
+        $reply->user_id = auth()->id();
+        $reply->parent_id = $request->parent_id; // Set the parent_id if it exists
+
+        $reply->save();
+
+        return redirect()->back()->with('success', 'Reply created successfully!');
     }
 
     /**
