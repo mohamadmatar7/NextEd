@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/like/comment/{comment}', [LikeController::class, 'likeComment'])->name('like.comment');
     Route::post('/like/reply/{reply}', [LikeController::class, 'likeReply'])->name('like.reply');
-    Route::post('/like/post/{id}', [LikeController::class, 'likePost'])->name('like.post');
+    Route::post('/like/post/{post}', [LikeController::class, 'likePost'])->name('like.post');
 
 
 

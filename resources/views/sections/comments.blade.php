@@ -1,9 +1,5 @@
-<section class="bg-white dark:bg-gray-900 py-8 lg:py-16 antialiased">
-    <div class="max-w-4xl mr-auto px-4">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">{{ __('template.Discussion') }} ({{ $post->comments->count() }})</h2>
-        </div>
-
+<section class="bg-white dark:bg-gray-900 py-4 my-4 lg:py-16 antialiased">
+    <div class="mr-auto px-4">
         @auth
         <form class="mb-3" action="{{ route('comments.store') }}" method="POST">
             @csrf
@@ -62,24 +58,3 @@
     </div>
 </section>
 
-<script>
-        function likeItem(itemId, route, isComment, itemType) {
-        // Send AJAX request
-        $.ajax({
-            url: route,
-            type: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}',
-                [isComment ? 'comment_id' : 'reply_id']: itemId
-            },
-            success: function(response) {
-                if (response.success) {
-                    $('#likeCounts_' + itemType + '_' + itemId).text(response.likeCount);
-                }
-            },
-            error: function(response) {
-                console.log(response);
-            }
-        });
-    }
-</script>
