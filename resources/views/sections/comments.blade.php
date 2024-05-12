@@ -1,7 +1,8 @@
-<section class="bg-white dark:bg-gray-900 py-4 my-4 lg:py-16 antialiased">
+@props(['post', 'itemType', 'Id'])
+<section class="bg-white dark:bg-gray-900 py-4 my-4 lg:py-6 antialiased hidden"  id="reply_{{ $itemType }}_{{ $post->id }}">
     <div class="mr-auto px-4">
         @auth
-        <form class="mb-3" action="{{ route('comments.store') }}" method="POST">
+        <form class="mb-3" action="{{ route('comments.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="post_id" value="{{ $post->id }}">
             <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -10,8 +11,6 @@
             </div>
             <x-primary-button>{{ __('template.Post') }}</x-primary-button>
         </form>
-        @else
-        <p class="text-sm text-gray-600 dark:text-gray-400">{{ __('template.Please') }} <a href="{{ route('login') }}" class="text-blue-500 hover:underline">{{ __('template.Log in') }}</a> {{ __('template.to post a comment.') }}</p>
         @endauth
         @foreach ($post->comments as $comment)
             @if (!$loop->last)
@@ -57,4 +56,5 @@
         @endforeach
     </div>
 </section>
+
 

@@ -1,3 +1,6 @@
+
+<div class="flex flex-col z-10 absolute right-0">
+
 <!-- Dropdown button -->
 <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
     class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -23,3 +26,7 @@
         </li>
     </ul>
 </div>
+</div>
+
+
+
