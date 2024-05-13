@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Course>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Grade>
  */
-class CourseFactory extends Factory
+class ProgramFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +17,10 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->sentence,
-            'description' => $this->faker->paragraph,
+            'name' => $this->faker->word,
+            'description' => $this->faker->sentence,
             'image' => $this->faker->imageUrl(),
-            'program_id' => \App\Models\Program::factory(),
+            'created_at' => fake()->dateTimeBetween('-1 years', 'now'),
         ];
     }
 }

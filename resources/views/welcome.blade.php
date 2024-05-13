@@ -5,7 +5,6 @@
         class="relative flex flex-col md:flex-row justify-center min-h-screen bg-dots-darker bg-center bg-gray-50 dark:bg-dots-lighter dark:bg-gray-900 w-full">
         @if (Route::has('login'))
 
-
             <!--
         @auth
         <a href="{{ url('/dashboard') }}"

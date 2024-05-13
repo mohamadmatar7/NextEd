@@ -18,6 +18,12 @@ class DatabaseSeeder extends Seeder
         \App\Models\Reply::factory(10)->create();
         \App\Models\Reply::factory(3)->replyTo(1)->create();
         \App\Models\Like::factory(10)->create();
+        // \App\Models\Course::factory(10)->create();
+        \App\Models\Assignment::factory(10)->create();
+        // \App\Models\Program::factory(10)->create();
+        \App\Models\Announcement::factory(10)->create();
+        // \App\Models\Announcement::factory(3)->forProgram(1)->create();
+        // \App\Models\Announcement::factory(3)->forCourse(1)->create();
 
 
         // \App\Models\User::factory()->create([

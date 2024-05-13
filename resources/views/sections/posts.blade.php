@@ -7,7 +7,7 @@
                         <h2 class="px-4 py-4 text-4xl font-extrabold dark:text-white">{{ __('template.Community') }}</h2>
                     </div>
                 </div>
-                <!--middle creat tweet-->
+                <!--middle create Post above icons-->
                 @auth
                 <div class="flex">
                     <div class="m-2 w-10 py-1">
