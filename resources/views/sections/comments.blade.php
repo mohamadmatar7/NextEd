@@ -50,7 +50,8 @@
                     :hidden=false 
                     :Id="$reply->id" 
                     :route="route('like.reply', $reply->id)" 
-                    userId="{{ $reply->user_id }}" />
+                    userId="{{ $reply->user_id }}" 
+                    />
                 @endforeach
             </div>
         @endforeach
