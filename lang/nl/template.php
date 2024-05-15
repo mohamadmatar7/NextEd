@@ -33,6 +33,7 @@ return [
     'First Name' => 'Voornaam',
     'General Announcements' => 'Algemene Aankondigingen',
     'Guest' => 'Gast',
+    'Home' => 'Home',
     'Last Name' => 'Achternaam',
     'Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.' => 'Wachtwoord vergeten? Geen probleem. Laat ons gewoon je e-mailadres weten en we sturen je een wachtwoord reset link waarmee je een nieuwe kunt kiezen.',
     'Forgot Your Password?' => 'Wachtwoord vergeten?',
