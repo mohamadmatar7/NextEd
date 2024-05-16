@@ -1,4 +1,4 @@
-<div class="md:w-2/6 relative">
+<div class="md:w-4/12 relative">
     <!--Aside menu (right side)-->
     <div class="py-6 px-4 sm:sticky sm:top-0 bg-white dark:bg-gray-800 max-h-svh">
         <!--Announcements specific section-->

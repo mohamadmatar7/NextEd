@@ -14,7 +14,7 @@
                         <p class="text-base leading-6 font-medium ">
                             <span
                                 class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                                {{ '@' . $post->user->name }}. {{ $post->created_at->diffForHumans() }}
+                                {{ $post->user->name }}. {{ $post->created_at->diffForHumans() }}
                             </span>
                         </p>
                     </div>
