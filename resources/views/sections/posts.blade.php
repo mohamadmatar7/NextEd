@@ -1,4 +1,4 @@
-<div class="md:w-[48%] lg:w-[53%] relative">
+<div class="md:w-7/12 lg:w-[63%] relative">
     <div class="flex">
         <section class="bg-white dark:bg-gray-900 py-6 px-2 antialiased">
             <!--Content (Center)-->

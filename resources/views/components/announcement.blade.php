@@ -1,6 +1,6 @@
 @props(['Items', 'loopTitle'])
 
-<div class="flex flex-col mb-6" style="max-height: 46.5vh;">
+<div class="flex flex-col mb-6" style="height: 46.5vh;">
     <div class="flex">
         <h3 class="px-4 pt-4 pb-2 text-3xl font-extrabold dark:text-white">{{ $loopTitle }}</h3>
     </div>

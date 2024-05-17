@@ -69,7 +69,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/announcements/{announcement}', [AnnouncementController::class, 'show'])->name('announcements.show');
 
 
+    // courses
+    Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])->name('courses.index');
+    Route::get('/courses/create', [App\Http\Controllers\CourseController::class, 'create'])->name('courses.create');
+    Route::post('/courses', [App\Http\Controllers\CourseController::class, 'store'])->name('courses.store');
+    Route::get('/courses/{course}', [App\Http\Controllers\CourseController::class, 'show'])->name('courses.show');
+    Route::get('/courses/{course}/edit', [App\Http\Controllers\CourseController::class, 'edit'])->name('courses.edit');
+    Route::patch('/courses/{course}', [App\Http\Controllers\CourseController::class, 'update'])->name('courses.update');
+    Route::delete('/courses/{course}', [App\Http\Controllers\CourseController::class, 'destroy'])->name('courses.destroy');
+    // course showByUser
+    Route::get('/courses/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showByUser'])->name('courses.showByUser');
 
+
+    // comments
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 });
 

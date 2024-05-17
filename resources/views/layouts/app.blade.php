@@ -1,19 +1,15 @@
 @include('document.document-header')
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+            <div class="xl:container mx-auto px-2">
+                <div
+                    class="relative flex flex-col md:flex-row justify-center min-h-screen bg-dots-darker bg-center bg-gray-50 dark:bg-dots-lighter dark:bg-gray-900 w-full">
 
             <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+            @include('sections.sidebar')
 
             <!-- Page Content -->
-            <main>
+            <main class="relative flex flex-col md:flex-row w-full md:w-10/12 lg:w-[87.1%]">
                 {{ $slot }}
             </main>
         </div>

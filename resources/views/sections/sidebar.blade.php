@@ -1,5 +1,5 @@
-<div class="md:w-2/12 lg:w-[12.9%] relative">
-    <header class="md:sticky sm:top-0 bg-white dark:bg-gray-800">
+<div class="md:w-2/12 lg:w-[12.9%] relative bg-white dark:bg-gray-800 border-r border-gray-50 dark:border-gray-100">
+    <header class="md:sticky sm:top-0">
         <!-- Navbar (left side) -->
         <div class="w-full pr-2 flex justify-between md:block">
             <!--Logo-->

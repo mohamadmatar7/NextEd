@@ -19,7 +19,7 @@ class CourseFactory extends Factory
         return [
             'name' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
-            'image' => $this->faker->imageUrl(),
+            'image' => 'https://source.unsplash.com/random',
             'program_id' => \App\Models\Program::factory(),
         ];
     }

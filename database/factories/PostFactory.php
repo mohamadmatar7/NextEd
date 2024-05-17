@@ -18,7 +18,7 @@ class PostFactory extends Factory
     {
         return [
             'body' => $this->faker->paragraph(),
-            'image' => $this->faker->imageUrl(),
+            'image' => 'https://source.unsplash.com/random',
             'user_id' => \App\Models\User::factory(),
             'created_at' => fake()->dateTimeBetween('-1 years', 'now'),
         ];
