@@ -12,7 +12,7 @@
                 @if ($item->image)
                 <img src="{{ $item->image }}" alt="{{ $item->title }}" class="w-full h-24 object-cover">
                 @endif
-                <div class="px-6 py-4">
+                <div class="px-2 py-4">
                     <h3 class="text-xl font-bold dark:text-white">{{ $item->title }}</h3>
                     <p class="mt-2 text-gray-600 dark:text-gray-400">{{ $item->created_at->format('F d, Y') }} by {{
                         $item->user->name }}</p>

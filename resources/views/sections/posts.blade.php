@@ -1,6 +1,6 @@
-<div class="md:w-7/12 relative">
+<div class="md:w-[48%] lg:w-[53%] relative">
     <div class="flex">
-        <section class="m-auto bg-white dark:bg-gray-900 py-6 px-4 antialiased">
+        <section class="bg-white dark:bg-gray-900 py-6 px-2 antialiased">
             <!--Content (Center)-->
                 <div class="flex">
                     <div class="flex-1">

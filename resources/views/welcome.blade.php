@@ -1,7 +1,7 @@
 @include('document.document-header')
 
 <body class="antialiased">
-<div class="container mx-auto">
+<div class="xl:container mx-auto px-2">
     <div
         class="relative flex flex-col md:flex-row justify-center min-h-screen bg-dots-darker bg-center bg-gray-50 dark:bg-dots-lighter dark:bg-gray-900 w-full">
         @if (Route::has('login'))
