@@ -61,13 +61,7 @@ class CourseController extends Controller
         return redirect()->route('courses.index');
     }
 
-    // public function showByUser($user_id)
-    // {
-    //     $courses = Course::where('user_id', $user_id)->get();
-    //     return view('courses.showByUser', compact('courses'));
-    // }
 
-    // get the courses that the user is enrolled in
     public function showByUser($user_id)
     {
         $courses = Course::whereHas('users', function ($query) use ($user_id) {

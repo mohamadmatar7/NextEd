@@ -58,5 +58,18 @@ class ProgramController extends Controller
 
         return redirect()->route('programs.index');
     }
+
+
+    // show the program by user_id that get it from the courses that belong to the program
+    public function showByUser($user_id)
+    {
+        // Fetch programs through the courses the user is enrolled in
+        $programs = Program::whereHas('courses.users', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })->get();
+
+        return view('programs.showByUser', compact('programs'));
+    }
+
     
 }

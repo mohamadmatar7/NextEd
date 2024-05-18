@@ -40,7 +40,7 @@
             </svg>
             <span class="text-sm">Messages</span>
         </a>
-        <a href="#"
+        <a href="{{ route('programs.showByUser', Auth::user()->id) }}"
             class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full hover:bg-primary hover:text-white">
             <svg class="h-6 w-8" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 stroke="currentColor" viewBox="0 0 24 24">

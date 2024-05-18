@@ -1,8 +1,9 @@
-@props(['items'])
+@props(['items', 'routeGenerator'])
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
     @foreach($items as $item)
-    <a href="{{ $item->route }}" class="bg-gray-100 dark:bg-gray-700 rounded-lg shadow-md overflow-hidden">
+    <a href="{{ $routeGenerator($item) }}"
+        class="bg-gray-100 dark:bg-gray-700 rounded-lg shadow-md overflow-hidden">
         @if ($item->image)
         <img src="{{ $item->image }}" alt="{{ $item->name }}" class="w-full h-32 sm:h-48 object-cover">
         @endif

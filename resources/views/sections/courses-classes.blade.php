@@ -10,7 +10,7 @@
             @endif
         </div>
         <div class="mt-4">
-            <x-course-class :items="$items" />
+            <x-course-class :items="$items" :routeGenerator="$routeGenerator" />
         </div>
     </div>
 </div>

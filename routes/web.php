@@ -81,6 +81,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/courses/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showByUser'])->name('courses.showByUser');
 
 
+    // programs
+    Route::get('/programs', [App\Http\Controllers\ProgramController::class, 'index'])->name('programs.index');
+    Route::get('/programs/create', [App\Http\Controllers\ProgramController::class, 'create'])->name('programs.create');
+    Route::post('/programs', [App\Http\Controllers\ProgramController::class, 'store'])->name('programs.store');
+    Route::get('/programs/{program}', [App\Http\Controllers\ProgramController::class, 'show'])->name('programs.show');
+    Route::get('/programs/{program}/edit', [App\Http\Controllers\ProgramController::class, 'edit'])->name('programs.edit');
+    Route::patch('/programs/{program}', [App\Http\Controllers\ProgramController::class, 'update'])->name('programs.update');
+    Route::delete('/programs/{program}', [App\Http\Controllers\ProgramController::class, 'destroy'])->name('programs.destroy');
+    // program showByUser
+    Route::get('/programs/user/{user_id}', [App\Http\Controllers\ProgramController::class, 'showByUser'])->name('programs.showByUser');
+
+
     // comments
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 });
