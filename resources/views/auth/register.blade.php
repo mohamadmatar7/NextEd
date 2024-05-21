@@ -74,6 +74,18 @@
             <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
         </div>
 
+        <!-- gender -->
+        <div class="mt-4">
+            <x-input-label for="gender" :value="__('template.Gender')" />
+            <x-select id="gender" class="block mt-1 w-full" name="gender" required>
+                <option value="Female" selected>{{ __('template.Gender Select.Female') }}</option>
+                <option value="Male">{{ __('template.Gender Select.Male') }}</option>
+                <option value="Other">{{ __('template.Gender Select.Other') }}</option>
+            </x-select>
+            <x-input-error :messages="$errors->get('gender')" class="mt-2" />
+        </div>
+
+
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
                 {{ __('template.Already registered?') }}

@@ -6,7 +6,7 @@
                 <div class="flex items-center">
                     <div>
                         <img class="inline-block h-10 w-10 rounded-full"
-                            src="{{ $post->user->getFirstMedia('avatars') ? $post->user->getFirstMedia('avatars')->getUrl() : asset('assets/images/avatars/default-avatar.png') }}"
+                            src="{{ $post->user->getFirstMedia('avatars') ? $post->user->getFirstMedia('avatars')->getUrl() : asset('assets/images/avatars/avatar-' . strtolower($post->user->gender) . '.svg') }}"
                             alt="{{ $post->user->name }}">
 
                     </div>

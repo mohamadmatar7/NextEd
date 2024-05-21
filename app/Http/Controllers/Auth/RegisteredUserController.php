@@ -39,7 +39,8 @@ class RegisteredUserController extends Controller
             'unique:'.User::class],
             'role' => ['required', 'integer', 'min:0', 'max:4'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'avatar' => ['nullable', 'image', 'max:2048']
+            'avatar' => ['nullable', 'image', 'max:2048'],
+            'gender' => ['required', 'string', 'max:50'],
         ]);
 
         $user = User::create([
@@ -49,6 +50,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'role' => $request->role,
             'password' => Hash::make($request->password),
+            'gender' => $request->gender
 
         ]);
 

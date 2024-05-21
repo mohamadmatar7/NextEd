@@ -21,7 +21,7 @@
                 @php
                     $avatarUrl = $comment->user->getFirstMedia('avatars')
                         ? $comment->user->getMedia('avatars')->last()->getUrl()
-                        : asset('assets/images/avatars/default-avatar.png');
+                        : asset('assets/images/avatars/avatar-' . strtolower($comment->user->gender) . '.svg');
                 @endphp
 
                 <x-comment 

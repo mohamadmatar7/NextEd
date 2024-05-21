@@ -14,9 +14,9 @@
 
             <!-- Nav-->
             <div class="nav-container pt-4 relative">
-                @include('sections.nav-mobile')
+                @include('sections.nav-mobile-color')
 
-                @include('sections.nav-pc')
+                @include('sections.nav-pc-color')
             </div>
         </div>
     </header>

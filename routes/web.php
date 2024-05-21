@@ -7,6 +7,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +82,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/courses/{course}', [App\Http\Controllers\CourseController::class, 'destroy'])->name('courses.destroy');
     // course showByUser
     Route::get('/courses/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showByUser'])->name('courses.showByUser');
+    // course showByProgram
+    Route::get('/courses/program/{program_id}/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showByProgram'])->name('courses.showByProgram');
 
 
     // programs
@@ -91,6 +96,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/programs/{program}', [App\Http\Controllers\ProgramController::class, 'destroy'])->name('programs.destroy');
     // program showByUser
     Route::get('/programs/user/{user_id}', [App\Http\Controllers\ProgramController::class, 'showByUser'])->name('programs.showByUser');
+
+
+    // users
+    Route::get('/users', [App\Http\Controllers\ProfileController::class, 'index'])->name('users.index');
+    // user showByRoles
+    Route::get('/users/role', [App\Http\Controllers\ProfileController::class, 'showByUserRoles'])->name('users.showByRoles');
+    // user showByRole
+    Route::get('/users/role/{role}', [App\Http\Controllers\ProfileController::class, 'showByRole'])->name('users.showByRole');
+
 
 
     // comments

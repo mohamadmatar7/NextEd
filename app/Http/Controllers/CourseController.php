@@ -69,4 +69,13 @@ class CourseController extends Controller
         })->get();
         return view('courses.showByUser', compact('courses'));
     }
+
+    // show courses by program (user is enrolled in the course)
+    public function showByProgram($program_id, $user_id)
+    {
+        $courses = Course::where('program_id', $program_id)->whereHas('users', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })->get();
+        return view('courses.showByProgram', compact('courses'));
+    }
 }

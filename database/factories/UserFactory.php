@@ -32,6 +32,7 @@ class UserFactory extends Factory
             'role' => fake()->numberBetween(0, 4), // 0 = student, 1 = teacher, 2 = instructor, 3 = principal, 4 = admin
             'password' => static::$password ??= Hash::make('password'),
             'avatar' => null,
+            'gender' => fake()->randomElement(['Female', 'Male', 'Other']),
             'remember_token' => Str::random(10),
         ];
     }
