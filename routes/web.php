@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\LessonController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\UserController;
@@ -64,7 +65,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/like/reply/{reply}', [LikeController::class, 'likeReply'])->name('like.reply');
     Route::post('/like/post/{post}', [LikeController::class, 'likePost'])->name('like.post');
 
-    // announcements
+    // announcements+
+    Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
     Route::post('/announcements', [AnnouncementController::class, 'store'])->name('announcements.store');
     Route::delete('/announcements/{announcement}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
     Route::patch('/announcements/{announcement}', [AnnouncementController::class, 'update'])->name('announcements.update');
@@ -83,7 +85,16 @@ Route::middleware('auth')->group(function () {
     // course showByUser
     Route::get('/courses/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showByUser'])->name('courses.showByUser');
     // course showByProgram
-    Route::get('/courses/program/{program_id}/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showByProgram'])->name('courses.showByProgram');
+    Route::get('/courses/program/{program_id}/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showByProgram'])->name('courses.showByProgram');  
+    // assignments of a course
+    Route::get('/courses/{course}/assignments', [App\Http\Controllers\AssignmentController::class, 'showAssignments'])->name('courses.showAssignments');
+    // announcements of a course
+    Route::get('/courses/{course}/announcements', [App\Http\Controllers\AnnouncementController::class, 'showAnnouncements'])->name('courses.showAnnouncements');
+    // users of a course
+    Route::get('/courses/{course}/users', [App\Http\Controllers\CourseController::class, 'showUsers'])->name('courses.showUsers');
+    // lessons of a course
+    Route::get('/courses/{course}/lessons', [App\Http\Controllers\CourseController::class, 'showLessons'])->name('courses.showLessons');
+    Route::get('/courses/{course}/lessons/{lesson}', [App\Http\Controllers\LessonController::class, 'show'])->name('courses.showLesson');
 
 
     // programs
@@ -104,6 +115,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/role', [App\Http\Controllers\ProfileController::class, 'showByUserRoles'])->name('users.showByRoles');
     // user showByRole
     Route::get('/users/role/{role}', [App\Http\Controllers\ProfileController::class, 'showByRole'])->name('users.showByRole');
+
+
 
 
 

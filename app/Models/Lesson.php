@@ -7,25 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Assignment extends Model implements HasMedia
+class Lesson extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
         'name',
+        'date',
+        'duration',
+        'location',
         'description',
-        'due_date',
+        'video',
         'course_id',
     ];
 
     public function course()
     {
         return $this->belongsTo(Course::class);
-    }
-
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
     }
 }

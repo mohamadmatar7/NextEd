@@ -27,7 +27,6 @@ class User extends Authenticatable implements HasMedia
         'role',
         'password',
         'gender'
-        
     ];
 
     /**
@@ -83,6 +82,11 @@ class User extends Authenticatable implements HasMedia
     public function attendances()
     {
         return $this->hasMany(Attendance::class);
+    }
+
+    public function assignments()
+    {
+        return $this->belongsToMany(Assignment::class);
     }
 
 

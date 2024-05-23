@@ -16,6 +16,11 @@ class Course extends Model
         'program_id',
     ];
 
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
+
     public function program()
     {
         return $this->belongsTo(Program::class);

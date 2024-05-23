@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Assignment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Lesson>
  */
-class AssignmentFactory extends Factory
+class LessonFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,13 +19,9 @@ class AssignmentFactory extends Factory
         return [
             'name' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
-            'due_date' => $this->faker->dateTimeBetween('now', '+1 month'),
+            'video' => 'https://www.youtube.com/watch?v=6g8GpR7kT7w',
             'course_id' => \App\Models\Course::factory(),
-            'completed' => false,
-            'notes' => $this->faker->paragraph,
-            'completed_at' => null,
             'created_at' => fake()->dateTimeBetween('-1 years', 'now'),
-
         ];
     }
 }

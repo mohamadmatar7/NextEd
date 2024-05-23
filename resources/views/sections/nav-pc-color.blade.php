@@ -1,4 +1,4 @@
-<div class="nav-toggle hidden md:block">
+<div class="nav-toggle hidden md:flex md:flex-col md:justify-between md:h-[90%]">
     <nav class="mt-5">
         <a href="{{ route('welcome') }}"
             class="group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-semibold bg-gradient-to-r from-blue-500 to-blue-700 dark:from-gray-700 dark:to-gray-900 hover:from-blue-700 hover:to-blue-900 text-white rounded-e-full">
@@ -49,25 +49,30 @@
 
 
     <!-- User Menu -->
-    <details class="w-full my-6 cursor-pointer">
-        <summary class="flex-shrink-0 flex bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white rounded-r-full">
-            <div class="flex flex-col justify-center items-center px-3 py-2 text-sm leading-4 font-medium w-full">
-                <!-- User Avatar -->
-                @if (Auth::user()->hasMedia('avatars'))
-                <img class="h-8 w-8 rounded-full mb-1" src="{{ Auth::user()->getMedia('avatars')->last()->getUrl() }}"
-                    alt="{{ Auth::user()->name }}" />
-                @else
-                <!-- If user does not have an avatar, display a default image -->
-                <img class="h-8 w-8 rounded-full mb-1" src="{{ asset('assets/images/avatars/avatar-' . strtolower(Auth::user()->gender) . '.svg') }}"
-                    alt="{{ Auth::user()->name }}" />
-                @endif
+    <details class="w-full cursor-pointer group mt-2">
+        <summary class="flex-shrink-0 flex bg-gradient-to-r from-blue-500 to-blue-700 dark:from-gray-700 dark:to-gray-900 hover:from-blue-700 hover:to-blue-900 text-white rounded-r-full">
+            <div class="flex items-center justify-center px-3 py-2 text-sm leading-4 font-medium w-full">
+                <!-- Container for Avatar and Name in a column -->
+                <div class="flex flex-col items-center space-y-1">
+                    <!-- User Avatar -->
+                    @if (Auth::user()->hasMedia('avatars'))
+                        <img class="h-8 w-8 rounded-full" src="{{ Auth::user()->getMedia('avatars')->last()->getUrl() }}" alt="{{ Auth::user()->name }}" />
+                    @else
+                        <!-- If user does not have an avatar, display a default image -->
+                        <img class="h-8 w-8 rounded-full" src="{{ asset('assets/images/avatars/avatar-' . strtolower(Auth::user()->gender) . '.svg') }}" alt="{{ Auth::user()->name }}" />
+                    @endif
 
-
-                <div>{{substr(Auth::user()->last_name, 0, 1) . substr(Auth::user()->first_name, 0, 1) }}
+                    <div>{{ substr(Auth::user()->last_name, 0, 1) . substr(Auth::user()->first_name, 0, 1) }}</div>
                 </div>
+                <!-- SVG Arrow -->
+                <svg class="w-4 h-4 ml-2 transition duration-300 ease-in transform rotate-0 group-open:rotate-180"
 
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
             </div>
         </summary>
+
         <div class="py-4 w-full">
             <!-- User's Name -->
             <div class="block px-4 py-2 text-xs text-gray-700 dark:text-primary cursor-text">

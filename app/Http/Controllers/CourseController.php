@@ -15,7 +15,35 @@ class CourseController extends Controller
 
     public function show(Course $course)
     {
-        return view('courses.show', compact('course'));
+        // return view('courses.show', compact('course'));
+        $items = [
+            [
+                'route' => route('courses.showAssignments', $course->id),
+                'title' => __('Assignments'),
+                'subtitle' => __('Manage and view all assignments'),
+                'icon' => asset('assets/icons/group/assignments.svg'),
+            ],
+            [
+                'route' => route('courses.showAnnouncements', $course->id),
+                'title' => __('Announcements'),
+                'subtitle' => __('Manage and view all announcements'),
+                'icon' => asset('assets/icons/group/announcements.svg'),
+            ],
+            [
+                'route' => route('courses.showUsers', $course->id),
+                'title' => __('Users'),
+                'subtitle' => __('Manage and view all users'),
+                'icon' => asset('assets/icons/group/users.svg'),
+            ],
+            [
+                'route' => route('courses.showLessons', $course->id),
+                'title' => __('Lessons'),
+                'subtitle' => __('Manage and view all lessons'),
+                'icon' => asset('assets/icons/group/lessons.svg'),
+                
+            ],
+        ];
+        return view('courses.show', compact('course', 'items'));
     }
 
     public function create()
@@ -77,5 +105,15 @@ class CourseController extends Controller
             $query->where('user_id', $user_id);
         })->get();
         return view('courses.showByProgram', compact('courses'));
+    }
+
+    public function showLessons(Course $course)
+    {
+        $lessons = $course->lessons; // Assuming there's a relationship defined in the Course model
+
+        // // Debugging
+        // dd($course, $lessons);
+
+        return view('courses.showLessons', compact('course', 'lessons'));
     }
 }

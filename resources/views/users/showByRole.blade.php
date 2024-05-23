@@ -4,10 +4,10 @@
 <x-app-layout>
 
 
-    <div class="py-8 w-full">
-        <div class="mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="py-6 px-4 sm:px-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-600">
+
+        <div class="mx-auto w-full">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl w-full lg:py-8">
+                <div class="py-6 px-4 sm:px-10 bg-white dark:bg-gray-800">
                     <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
                         {{ __('template.Users with role') }} {{ $role }}
                     </h2>
@@ -90,7 +90,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
     @section('scripts')
         <script>
             const search = document.getElementById('search');

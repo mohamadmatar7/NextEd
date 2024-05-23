@@ -1,11 +1,16 @@
 @section('title', __('template.Courses') . ' - ' . $course->name)
 <x-app-layout>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('template.Courses') }}
-        </h2>
-    </x-slot>
+<x-group-cards title="{{ __('Course Overview') }}">
+        @foreach($items as $item)
+            <x-group-card :route="$item['route']"
+                          :title="$item['title']"
+                            :class="' '"
+                          :subtitle="$item['subtitle']"
+                          :icon="$item['icon']"
+            />
+        @endforeach
+    </x-group-cards>
 
 
 </x-app-layout>

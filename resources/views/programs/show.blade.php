@@ -1,12 +1,15 @@
 @section('title', __('template.Classes') . ' - ' . $program->name)
 
 <x-app-layout>
-
-@include('sections.courses-classes', [ 'sectionTitle' => __('template.Courses in') . ' - ' . $program->name,
-                                        'sectionButton' => __('template.Create Course'),
-                                        'items' => $program->courses,
-                                        'routeGenerator' => function ($item) { return route('courses.show', $item); },
-                                        'sectionRoute' => route('courses.create') ])
-
-
+    <x-group-cards title="{{ __('template.Courses in') . ' ' . $program->name }}">
+        @foreach($program->courses as $item)
+            <x-group-card :route="route('courses.show', $item)"
+                        :title="$item['name']"
+                        :class="'flex-col-reverse justify-center gap-y-2'"
+                        :bodyClass="'flex flex-col gap-y-1'"
+                        :subtitle="$item['description']"
+                        :icon="$item['image']"
+            />
+        @endforeach
+    </x-group-cards>
 </x-app-layout>
