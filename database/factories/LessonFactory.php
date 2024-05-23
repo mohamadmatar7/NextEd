@@ -21,6 +21,9 @@ class LessonFactory extends Factory
             'description' => $this->faker->paragraph,
             'video' => 'https://www.youtube.com/watch?v=6g8GpR7kT7w',
             'course_id' => \App\Models\Course::factory(),
+            'date' => $this->faker->dateTimeBetween('now', '+1 month'),
+            'duration' => $this->faker->time(),
+            'location' => $this->faker->address,
             'created_at' => fake()->dateTimeBetween('-1 years', 'now'),
         ];
     }

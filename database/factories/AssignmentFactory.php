@@ -23,7 +23,6 @@ class AssignmentFactory extends Factory
             'course_id' => \App\Models\Course::factory(),
             'completed' => false,
             'notes' => $this->faker->paragraph,
-            'completed_at' => null,
             'created_at' => fake()->dateTimeBetween('-1 years', 'now'),
 
         ];

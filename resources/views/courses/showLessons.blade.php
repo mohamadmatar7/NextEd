@@ -2,7 +2,7 @@
 
 <x-app-layout>
 
-    <x-group-cards title="{{ __('Lessons of') }} {{ @$course->name }}">
+    <x-group-cards title="{{ __('Lessons in') }} {{ @$course->name }}">
         @foreach($lessons as $lesson)
             <x-group-card :route="route('courses.showLesson', [$course, $lesson])"
                           :title="$lesson->name"

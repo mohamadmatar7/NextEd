@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Assignment;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -19,25 +20,25 @@ class CourseController extends Controller
         $items = [
             [
                 'route' => route('courses.showAssignments', $course->id),
-                'title' => __('Assignments'),
+                'title' => __('template.Assignments'),
                 'subtitle' => __('Manage and view all assignments'),
                 'icon' => asset('assets/icons/group/assignments.svg'),
             ],
             [
                 'route' => route('courses.showAnnouncements', $course->id),
-                'title' => __('Announcements'),
+                'title' => __('template.Announcements'),
                 'subtitle' => __('Manage and view all announcements'),
                 'icon' => asset('assets/icons/group/announcements.svg'),
             ],
             [
                 'route' => route('courses.showUsers', $course->id),
-                'title' => __('Users'),
+                'title' => __('template.Users'),
                 'subtitle' => __('Manage and view all users'),
                 'icon' => asset('assets/icons/group/users.svg'),
             ],
             [
                 'route' => route('courses.showLessons', $course->id),
-                'title' => __('Lessons'),
+                'title' => __('template.Lessons'),
                 'subtitle' => __('Manage and view all lessons'),
                 'icon' => asset('assets/icons/group/lessons.svg'),
                 
@@ -109,11 +110,24 @@ class CourseController extends Controller
 
     public function showLessons(Course $course)
     {
-        $lessons = $course->lessons; // Assuming there's a relationship defined in the Course model
-
-        // // Debugging
-        // dd($course, $lessons);
-
+        $lessons = $course->lessons;
         return view('courses.showLessons', compact('course', 'lessons'));
+    }
+
+    public function showUsers(Course $course)
+    {
+        $users = $course->users;
+        return view('courses.showUsers', compact('course', 'users'));
+    }
+
+    public function showAssignments(Course $course)
+    {
+        $assignments = $course->assignments;
+        return view('courses.showAssignments', compact('course', 'assignments'));
+    }
+
+    public function showAssignment(Course $course, Assignment $assignment)
+    {
+        return view('courses.showAssignment', compact('course', 'assignment'));
     }
 }

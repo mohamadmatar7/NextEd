@@ -95,6 +95,9 @@ Route::middleware('auth')->group(function () {
     // lessons of a course
     Route::get('/courses/{course}/lessons', [App\Http\Controllers\CourseController::class, 'showLessons'])->name('courses.showLessons');
     Route::get('/courses/{course}/lessons/{lesson}', [App\Http\Controllers\LessonController::class, 'show'])->name('courses.showLesson');
+    // assignments of a course
+    Route::get('/courses/{course}/assignments', [App\Http\Controllers\CourseController::class, 'showAssignments'])->name('courses.showAssignments');
+    Route::get('/courses/{course}/assignments/{assignment}', [App\Http\Controllers\CourseController::class, 'showAssignment'])->name('courses.showAssignment');
 
 
     // programs
