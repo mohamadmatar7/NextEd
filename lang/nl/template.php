@@ -12,6 +12,9 @@ return [
     | you want to customize your views to better match your application.
     |
     */
+    '403 Forbidden' => '403 Verboden',
+    '404 Not Found' => '404 Niet gevonden',
+    '419 Page Expired' => '419 Pagina verlopen',
     'A new verification link has been sent to your email address.' => 'Er is een nieuwe verificatielink naar je e-mailadres gestuurd.',
     'Actions' => 'Acties',
     'Add' => 'Toevoegen',
@@ -27,6 +30,7 @@ return [
     'Assignments' => 'Opdrachten',
     'Assignments in' => 'Opdrachten in',
     'Avatar' => 'Avatar',
+    'Back to Homepage' => 'Terug naar Homepage',
     'Category' => 'Categorie',
     'Categories' => 'Categorieën',
     'Categories in' => 'Categorieën in',
@@ -116,6 +120,7 @@ return [
     'Verify Your Email Address' => 'Verifieer je e-mailadres',
     'What is on your mind?' => 'Waar denk je aan?',
     'Write a comment...' => 'Schrijf een reactie...',
+    "You don't have permission to access this page." => 'Je hebt geen toestemming om deze pagina te bekijken.',
     'Your Comment' => 'Jouw reactie',
     'Your email address is unverified.' => 'Je e-mailadres is niet geverifieerd.',
     "You're logged in!" => 'Je bent ingelogd!',

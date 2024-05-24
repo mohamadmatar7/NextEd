@@ -94,12 +94,6 @@ class ProfileController extends Controller
         return view('users.showByRoles', compact('roles'));
     }
 
-    // public function showByRole($role)
-    // {
-        
-    //     $users = User::where('role', $role)->with(['courses', 'courses.program'])->get();
-    //     return view('users.showByRole', compact('role', 'users'));
-    // }
 
     public function showByRole($role)
     {

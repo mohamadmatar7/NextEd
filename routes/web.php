@@ -118,13 +118,14 @@ Route::middleware('auth')->group(function () {
     // program showByUser
     Route::get('/programs/user/{user_id}', [App\Http\Controllers\ProgramController::class, 'showByUser'])->name('programs.showByUser');
 
-
-    // users
-    Route::get('/users', [App\Http\Controllers\ProfileController::class, 'index'])->name('users.index');
-    // user showByRoles
-    Route::get('/users/role', [App\Http\Controllers\ProfileController::class, 'showByUserRoles'])->name('users.showByRoles');
-    // user showByRole
-    Route::get('/users/role/{role}', [App\Http\Controllers\ProfileController::class, 'showByRole'])->name('users.showByRole');
+    // ensure that the user is an admin
+    Route::middleware('can:is-admin-or-principal')->group(function () {
+        Route::get('/users', [App\Http\Controllers\ProfileController::class, 'index'])->name('users.index');
+        // user showByRoles
+        Route::get('/users/role', [App\Http\Controllers\ProfileController::class, 'showByUserRoles'])->name('users.showByRoles');
+        // user showByRole
+        Route::get('/users/role/{role}', [App\Http\Controllers\ProfileController::class, 'showByRole'])->name('users.showByRole');
+    });
 
 
 

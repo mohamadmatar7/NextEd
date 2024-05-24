@@ -2,7 +2,7 @@
 
 <x-app-layout>
 
-    <x-group-cards title="{{ __('Categories') }}">
+    <x-group-cards title="{{ __('template.Categories') }}">
         @foreach($categories as $category)
             <x-group-card :route="route('categories.show', $category)"
                           :title="$category->name"
