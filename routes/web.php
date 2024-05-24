@@ -103,10 +103,6 @@ Route::middleware('auth')->group(function () {
     // administrators of a course
     Route::get('/courses/{course}/administrators', [App\Http\Controllers\CourseController::class, 'showAdministrators'])->name('courses.showAdministrators');
 
-
-    // categories
-    Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');
-    Route::get('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'show'])->name('categories.show');
     // programs
     Route::get('/programs', [App\Http\Controllers\ProgramController::class, 'index'])->name('programs.index');
     Route::get('/programs/create', [App\Http\Controllers\ProgramController::class, 'create'])->name('programs.create');
@@ -120,11 +116,17 @@ Route::middleware('auth')->group(function () {
 
     // ensure that the user is an admin
     Route::middleware('can:is-admin-or-principal')->group(function () {
+        // users
         Route::get('/users', [App\Http\Controllers\ProfileController::class, 'index'])->name('users.index');
         // user showByRoles
         Route::get('/users/role', [App\Http\Controllers\ProfileController::class, 'showByUserRoles'])->name('users.showByRoles');
         // user showByRole
         Route::get('/users/role/{role}', [App\Http\Controllers\ProfileController::class, 'showByRole'])->name('users.showByRole');
+
+        // categories
+        Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');
+        // show category
+        Route::get('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'show'])->name('categories.show');
     });
 
 
