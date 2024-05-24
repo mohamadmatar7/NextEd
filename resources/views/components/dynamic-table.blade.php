@@ -41,10 +41,10 @@
 @section('scripts')
     <script>
         const search = document.getElementById('search');
-        const userRows = document.querySelectorAll('.user-row');
+        const searchRows = document.querySelectorAll('.search-row');
         search.addEventListener('keyup', (e) => {
             const searchString = e.target.value.toLowerCase();
-            userRows.forEach((row) => {
+            searchRows.forEach((row) => {
                 const rowData = row.textContent.toLowerCase();
                 if (rowData.includes(searchString)) {
                     row.style.display = 'table-row';

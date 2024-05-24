@@ -32,9 +32,15 @@ class CourseController extends Controller
             ],
             [
                 'route' => route('courses.showUsers', $course->id),
-                'title' => __('template.Users'),
-                'subtitle' => __('Manage and view all users'),
+                'title' => __('template.Students'),
+                'subtitle' => __('Manage and view all students'),
                 'icon' => asset('assets/icons/group/users.svg'),
+            ],
+            [
+                'route' => route('courses.showAdministrators', $course->id),
+                'title' => __('template.Administrators'),
+                'subtitle' => __('Manage and view all administrators'),
+                'icon' => asset('assets/icons/group/administrators.svg'),
             ],
             [
                 'route' => route('courses.showLessons', $course->id),
@@ -120,6 +126,12 @@ class CourseController extends Controller
         return view('courses.showUsers', compact('course', 'users'));
     }
 
+    public function showAdministrators(Course $course)
+    {
+        $administrators = $course->users->where('role', 1 or 2 or 3 or 4);
+        return view('courses.showAdministrators', compact('course', 'administrators'));
+    }
+    
     public function showAssignments(Course $course)
     {
         $assignments = $course->assignments;

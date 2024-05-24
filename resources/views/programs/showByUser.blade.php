@@ -1,4 +1,4 @@
-@section('title', __('template.Classes'))
+@section('title', __('template.Programs'))
 <x-app-layout>
 
 <x-group-cards title="{{ __('template.Programs') }}">

@@ -20,7 +20,7 @@ class LessonFactory extends Factory
             'name' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
             'video' => 'https://www.youtube.com/watch?v=6g8GpR7kT7w',
-            'course_id' => \App\Models\Course::factory(),
+            'course_id' => rand(1, 10),
             'date' => $this->faker->dateTimeBetween('now', '+1 month'),
             'duration' => $this->faker->time(),
             'location' => $this->faker->address,

@@ -17,10 +17,19 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->sentence,
+            'name' => $this->faker->randomElement(['Introduction to Web Development',
+                                                    'Introduction to Mobile Development',
+                                                    'Introduction to Desktop Development',
+                                                    'Introduction to Machine Learning',
+                                                    'Introduction to Data Science',
+                                                    'Introduction to DevOps',
+                                                    'Introduction to Testing',
+                                                    'Introduction to Project Management',
+                                                    'Introduction to Design',
+                                                    'Introduction to Security']),
             'description' => $this->faker->paragraph,
             'image' => 'https://source.unsplash.com/random',
-            'program_id' => \App\Models\Program::factory(),
+            'program_id' => rand(1, 10),
         ];
     }
 }

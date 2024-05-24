@@ -17,9 +17,19 @@ class ProgramFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word,
+            'name' => $this->faker->randomElement(['Web Development',
+                                                    'Mobile Development',
+                                                    'Desktop Development',
+                                                    'Machine Learning',
+                                                    'Data Science',
+                                                    'DevOps',
+                                                    'Testing',
+                                                    'Project Management',
+                                                    'Design',
+                                                    'Security']),
             'description' => $this->faker->sentence,
             'image' => $this->faker->imageUrl(),
+            'category_id' => rand(1, 4),
             'created_at' => fake()->dateTimeBetween('-1 years', 'now'),
         ];
     }

@@ -10,6 +10,31 @@
             <img src="{{ asset('assets/icons/nav/dashboard.svg') }}" alt="Dashboard" class="h-6 w-8">
             <span class="text-sm">{{ __('template.Dashboard') }}</span>
         </a>
+        <a href="{{ route('categories.index') }}"
+            class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white">
+            <img src="{{ asset('assets/icons/nav/categories.svg') }}" alt="Categories" class="h-6 w-8">
+            <span class="text-sm">{{ __('template.Categories') }}</span>
+        </a>
+        <a href="{{ route('programs.showByUser', Auth::user()->id) }}"
+            class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white">
+            <img src="{{ asset('assets/icons/nav/classes.svg') }}" alt="Classes" class="h-6 w-8">
+            <span class="text-sm">{{ __('template.Programs') }}</span>
+        </a>
+        <a href="{{ route('courses.showByUser', Auth::user()->id) }}"
+            class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white">
+            <img src="{{ asset('assets/icons/nav/courses.svg') }}" alt="Courses" class="h-6 w-8">
+            <span class="text-sm">{{ __('template.Courses') }}</span>
+        </a>
+        <a href="{{ route('users.showByRoles') }}"
+            class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white">
+            <img src="{{ asset('assets/icons/nav/users.svg') }}" alt="Users" class="h-6 w-8">
+            <span class="text-sm">{{ __('template.Users') }}</span>
+        </a>
+        <a href="#"
+            class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full bg-gradient-to-r from-blue-500 to-blue-700 dark:from-gray-700 dark:to-gray-900 hover:from-blue-700 hover:to-blue-900 text-white">
+            <img src="{{ asset('assets/icons/nav/chat.svg') }}" alt="Chat" class="h-6 w-8">
+            <span class="text-sm">Chat</span>
+        </a>
         <a href="#"
             class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white relative">
             <img src="{{ asset('assets/icons/nav/notifications.svg') }}" alt="Notifications" class="h-6 w-8">
@@ -19,31 +44,6 @@
             class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white">
             <img src="{{ asset('assets/icons/nav/messages.svg') }}" alt="Messages" class="h-6 w-8">
             <span class="text-sm">Messages</span>
-        </a>
-        <a href="{{ route('programs.showByUser', Auth::user()->id) }}"
-            class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white">
-            <img src="{{ asset('assets/icons/nav/classes.svg') }}" alt="Classes" class="h-6 w-8">
-            <span class="text-sm">Classes</span>
-        </a>
-        <a href="{{ route('courses.showByUser', Auth::user()->id) }}"
-            class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white">
-            <img src="{{ asset('assets/icons/nav/courses.svg') }}" alt="Courses" class="h-6 w-8">
-            <span class="text-sm">Courses</span>
-        </a>
-        <a href="{{ route('users.showByRoles') }}"
-            class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white">
-            <img src="{{ asset('assets/icons/nav/users.svg') }}" alt="Users" class="h-6 w-8">
-            <span class="text-sm">Users</span>
-        </a>
-        <a href="#"
-            class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white">
-            <img src="{{ asset('assets/icons/nav/more.svg') }}" alt="More" class="h-6 w-8">
-            <span class="text-sm">More</span>
-        </a>
-        <a href="#"
-            class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full bg-gradient-to-r from-blue-500 to-blue-700 dark:from-gray-700 dark:to-gray-900 hover:from-blue-700 hover:to-blue-900 text-white">
-            <img src="{{ asset('assets/icons/nav/chat.svg') }}" alt="Chat" class="h-6 w-8">
-            <span class="text-sm">Chat</span>
         </a>
     </nav>
 

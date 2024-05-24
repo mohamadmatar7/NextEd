@@ -1,9 +1,9 @@
-@section('title', __('template.Students') . ' - ' . @$course->name)
+@section('title', __('template.Administrators') . ' - ' . @$course->name)
 
 <x-app-layout>
-<x-dynamic-table 
-        title="{{ __('template.Students in') }} {{ @$course->name }}"
-        routeText="{{ __('template.Create') }} {{ __('template.Student') }}"
+    <x-dynamic-table 
+        title="{{ __('template.Administrators in') }} {{ @$course->name }}"
+        routeText="{{ __('template.Create') }} {{ __('template.Administrator') }}"
         createRoute="{{ '' }}"
         :tableHeaders="[
             __('template.Name'),
@@ -12,7 +12,7 @@
         ]">
 
         @slot('tableRows')
-            @foreach($course->users->where('role', 0)->unique() as $user)
+            @foreach($administrators as $user)
                 <tr class="search-row">
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300 user-name">{{ $user->name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 user-email">{{ $user->email }}</td>
@@ -30,4 +30,3 @@
         @endslot
     </x-dynamic-table>
 </x-app-layout>
-

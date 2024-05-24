@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->foreignId('course_id')->constrained();
+            $table->foreignId('course_id');
             $table->dateTime('due_date');
             $table->boolean('completed')->default(false);
             $table->text('notes')->nullable();

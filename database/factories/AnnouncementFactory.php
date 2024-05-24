@@ -24,8 +24,8 @@ class AnnouncementFactory extends Factory
             'image' => 'https://source.unsplash.com/random',
             // user_id only if the role is 1,2,3 or 4
             'user_id' => \App\Models\User::whereIn('role', [1, 2, 3, 4])->inRandomOrder()->first(),
-            'program_id' => \App\Models\Program::factory(),
-            'course_id' => \App\Models\Course::factory(),
+            'program_id' => rand(1, 10),
+            'course_id' => rand(1, 10),
             'created_at' => fake()->dateTimeBetween('-1 years', 'now'),
         ];
     }

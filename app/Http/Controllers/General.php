@@ -16,10 +16,12 @@ class General extends Controller
         $announcements = Announcement::with('media', 'user', 'likes', 'program', 'course')
             ->latest()
             ->get();
-        $announcementsPrograms = Announcement::with('media', 'user', 'likes', 'program', 'course')
-            ->where('program_id', '21')
-            ->latest()
-            ->get();
+
+        // get announcements for of program that the user is enrolled in
+        $announcementsPrograms = auth()->user()->courses->map(function ($course) {
+            return $course->program->announcements;
+        })->flatten();
+
         return view('welcome', compact('posts', 'announcements', 'announcementsPrograms'));
 
     }

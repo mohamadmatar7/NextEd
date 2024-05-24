@@ -100,8 +100,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/courses/{course}/assignments/{assignment}', [App\Http\Controllers\CourseController::class, 'showAssignment'])->name('courses.showAssignment');
     // users of a course
     Route::get('/courses/{course}/users', [App\Http\Controllers\CourseController::class, 'showUsers'])->name('courses.showUsers');
+    // administrators of a course
+    Route::get('/courses/{course}/administrators', [App\Http\Controllers\CourseController::class, 'showAdministrators'])->name('courses.showAdministrators');
 
 
+    // categories
+    Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');
+    Route::get('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'show'])->name('categories.show');
     // programs
     Route::get('/programs', [App\Http\Controllers\ProgramController::class, 'index'])->name('programs.index');
     Route::get('/programs/create', [App\Http\Controllers\ProgramController::class, 'create'])->name('programs.create');
