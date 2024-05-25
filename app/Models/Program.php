@@ -11,6 +11,8 @@ class Program extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
+    protected $fillable = ['name', 'category_id', 'description', 'duration'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -25,4 +27,5 @@ class Program extends Model implements HasMedia
     {
         return $this->hasMany(Course::class);
     }
+
 }
