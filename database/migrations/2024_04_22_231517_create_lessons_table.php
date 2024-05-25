@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->date('date');
-            $table->time('duration');
+            $table->dateTime('start_time');
+            $table->dateTime('end_time');
             $table->string('location');
             $table->text('description');
             $table->string('video');
-            $table->foreignId('course_id')->references('id')->on('courses')->onDelete('cascade');
+            // $table->foreignId('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreignId('course_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

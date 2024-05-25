@@ -28,6 +28,8 @@ class CourseFactory extends Factory
                                                     'Introduction to Design',
                                                     'Introduction to Security']),
             'description' => $this->faker->paragraph,
+            'start_date' => fake()->dateTimeBetween('-3 months', 'now'),
+            'end_date' => fake()->dateTimeBetween('now', '+3 months'),
             'image' => 'https://source.unsplash.com/random',
             'program_id' => rand(1, 10),
         ];

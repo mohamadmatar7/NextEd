@@ -13,8 +13,8 @@ class Lesson extends Model implements HasMedia
 
     protected $fillable = [
         'name',
-        'date',
-        'duration',
+        'start_time',
+        'end_time',
         'location',
         'description',
         'video',
@@ -24,5 +24,10 @@ class Lesson extends Model implements HasMedia
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
     }
 }

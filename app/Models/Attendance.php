@@ -11,10 +11,9 @@ class Attendance extends Model
 
     protected $fillable = [
         'user_id',
-        'course_id',
-        'date',
-        'time',
-        'status',
+        'lesson_id',
+        'attended',
+        'reason',
     ];
 
     public function user()
@@ -22,9 +21,8 @@ class Attendance extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function course()
+    public function lesson()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(Lesson::class);
     }
-    
 }

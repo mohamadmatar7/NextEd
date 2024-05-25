@@ -21,8 +21,8 @@ class LessonFactory extends Factory
             'description' => $this->faker->paragraph,
             'video' => 'https://www.youtube.com/watch?v=6g8GpR7kT7w',
             'course_id' => rand(1, 10),
-            'date' => $this->faker->dateTimeBetween('now', '+1 month'),
-            'duration' => $this->faker->time(),
+            'start_time' => fake()->dateTimeBetween('-3 hours', 'now'),
+            'end_time' => fake()->dateTimeBetween('now', '+3 hours'),
             'location' => $this->faker->address,
             'created_at' => fake()->dateTimeBetween('-1 years', 'now'),
         ];

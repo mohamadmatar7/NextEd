@@ -12,6 +12,7 @@ use App\Models\Reply;
 use App\Models\Like;
 use App\Models\Announcement;
 use App\Models\Assignment;
+
 use Illuminate\Support\Facades\Log;
 
 class DatabaseSeeder extends Seeder
@@ -101,6 +102,23 @@ class DatabaseSeeder extends Seeder
         Course::all()->each(function ($course) {
             $course->users()->attach(User::all()->random(10));
         });
+
+
+        // Attendances
+        $users = User::all();
+        $lessons = Lesson::all();
+        foreach ($users as $user) {
+            foreach ($lessons as $lesson) {
+                $lesson->attendances()->create([
+                    'user_id' => $user->id,
+                    'lesson_id' => $lesson->id,
+                    'attended' => rand(0, 1),
+                    'reason' => ($user->role == 0 && rand(0, 1)) ? 'I am sick' : null,
+                ]);
+            }
+        }
+
+
 
 
 

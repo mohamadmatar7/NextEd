@@ -17,7 +17,10 @@ class AttendanceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => rand(1, 10),
+            'lesson_id' => rand(1, 10),
+            'attended' => $this->faker->boolean,
+            'reason' => $this->faker->sentence,
         ];
     }
 }
