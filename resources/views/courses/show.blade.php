@@ -1,7 +1,7 @@
 @section('title', __('template.Courses') . ' - ' . $course->name)
 <x-app-layout>
 
-<x-group-cards title="{{ __('Course Overview') }}">
+<x-group-cards title="{{ __('template.Course Overview') }} - {{ $course->name }}">
         @foreach($items as $item)
             <x-group-card :route="$item['route']"
                           :title="$item['title']"

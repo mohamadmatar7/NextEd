@@ -130,12 +130,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'show'])->name('categories.show');
     });
 
-    // ensure that the user is an administrator or a teacher
+    // ensure that the user is an administrator
     Route::middleware('can:is-administrator')->group(function () {
         // attendances
         Route::get('/courses/lessons/attendance/{lessonId}', [AttendanceController::class, 'showAttendanceForm'])->name('courses.lessons.attendance.form');
         Route::post('/courses/lessons/attendance/{lessonId}', [AttendanceController::class, 'submitAttendance'])->name('attendance.submit');
-
     });
 
 

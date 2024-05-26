@@ -41,6 +41,6 @@ class AttendanceController extends Controller
         }
 
         // Redirect back with a success message
-        return redirect()->route('courses.lessons.attendance.form', $lessonId)->with('success', 'Attendance has been submitted successfully.');
+        return redirect()->route('courses.lessons.attendance.form', $lessonId)->with('success', __('template.Attendance has been submitted successfully'));
     }
 }
