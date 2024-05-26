@@ -11,15 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Schema::create('attendances', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        //     $table->foreignId('lesson_id')->constrained()->onDelete('cascade');
+        //     $table->boolean('attended');
+        //     $table->string('reason')->nullable();
+        //     $table->unique(['user_id', 'lesson_id']);
+        //     $table->timestamps();
+
+        // });
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('lesson_id')->constrained()->onDelete('cascade');
-            $table->boolean('attended');
-            $table->string('reason')->nullable();
-            $table->unique(['user_id', 'lesson_id']);
+            $table->unsignedTinyInteger('status')->default(0)->comment('0: Present, 1: Absent with reason, 2: Absent without reason');
+            $table->text('reason')->nullable()->comment('Reason for absence if status is 1');
             $table->timestamps();
-
         });
     }
 

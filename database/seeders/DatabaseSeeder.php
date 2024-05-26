@@ -105,18 +105,18 @@ class DatabaseSeeder extends Seeder
 
 
         // Attendances
-        $users = User::all();
-        $lessons = Lesson::all();
-        foreach ($users as $user) {
-            foreach ($lessons as $lesson) {
-                $lesson->attendances()->create([
-                    'user_id' => $user->id,
-                    'lesson_id' => $lesson->id,
-                    'attended' => rand(0, 1),
-                    'reason' => ($user->role == 0 && rand(0, 1)) ? 'I am sick' : null,
-                ]);
-            }
-        }
+        // $users = User::all();
+        // $lessons = Lesson::all();
+        // foreach ($users as $user) {
+        //     foreach ($lessons as $lesson) {
+        //         $status = rand(0, 2);
+        //         $lesson->attendances()->create([
+        //             'user_id' => $user->id,
+        //             'status' => $status,
+        //             'reason' => ($user->role == 0 && $status == 1) ? 'I am sick' : null,
+        //         ]);
+        //     }
+        // }
 
 
 

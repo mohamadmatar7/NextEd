@@ -43,7 +43,7 @@ class CourseController extends Controller
                 'icon' => asset('assets/icons/group/administrators.svg'),
             ],
             [
-                'route' => route('courses.showLessons', $course->id),
+                'route' => route('courses.lessons.showLessons', $course->id),
                 'title' => __('template.Lessons'),
                 'subtitle' => __('Manage and view all lessons'),
                 'icon' => asset('assets/icons/group/lessons.svg'),
@@ -117,7 +117,7 @@ class CourseController extends Controller
     public function showLessons(Course $course)
     {
         $lessons = $course->lessons;
-        return view('courses.showLessons', compact('course', 'lessons'));
+        return view('courses.lessons.showLessons', compact('course', 'lessons'));
     }
 
     public function showUsers(Course $course)

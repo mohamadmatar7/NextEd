@@ -12,13 +12,13 @@ class LessonController extends Controller
     {
         $course = Course::find($courseId);
         $lessons = $course->lessons;
-        return view('courses.showLessons', compact('lessons'));
+        return view('courses.lessons.showLessons', compact('lessons'));
     }
 
 
     public function show(Course $course, Lesson $lesson)
     {
-        return view('courses.showLesson', compact('course', 'lesson'));
+        return view('courses.lessons.showLesson', compact('course', 'lesson'));
     }
 
 

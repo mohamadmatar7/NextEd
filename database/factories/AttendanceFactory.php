@@ -19,7 +19,7 @@ class AttendanceFactory extends Factory
         return [
             'user_id' => rand(1, 10),
             'lesson_id' => rand(1, 10),
-            'attended' => $this->faker->boolean,
+            'status' => rand(0, 2),
             'reason' => $this->faker->sentence,
         ];
     }
