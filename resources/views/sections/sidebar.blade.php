@@ -41,7 +41,7 @@
 
 
             <!-- Nav-->
-            <div class="nav-container pt-4 relative md:h-full">
+            <div class="nav-container pt-4 md:pt-0 relative md:h-full">
                 @include('sections.nav-mobile-color')
 
                 @include('sections.nav-pc-color')

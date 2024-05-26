@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->integer('year')->default(1);
+            $table->string('semester')->default(1);
             $table->string('start_date')->nullable();
             $table->string('end_date')->nullable();
             $table->string('image');
-            $table->foreignId('program_id');
+            $table->foreignId('program_id')->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

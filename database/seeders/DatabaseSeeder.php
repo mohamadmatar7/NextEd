@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Status;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\Program;
@@ -14,6 +15,7 @@ use App\Models\Announcement;
 use App\Models\Assignment;
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Arr;
 
 class DatabaseSeeder extends Seeder
 {
@@ -53,6 +55,7 @@ class DatabaseSeeder extends Seeder
                 'name' => $program,
                 'description' => 'This is a description for ' . $program,
                 'category_id' => rand(1, 4),
+                'years' => rand(2, 4),
             ]);
         }
 
@@ -68,6 +71,36 @@ class DatabaseSeeder extends Seeder
             'Introduction to Project Management',
             'Introduction to Design',
             'Introduction to Security',
+            'Introduction to History',
+            'Introduction to Geography',
+            'Introduction to Mathematics',
+            'Introduction to Physics',
+            'Introduction to Chemistry',
+            'Introduction to Biology',
+            'Introduction to Computer Science',
+            'Introduction to Software Engineering',
+            'Introduction to Information Technology',
+            'Introduction to Artificial Intelligence',
+            'Introduction to Robotics',
+            'Introduction to Cybersecurity',
+            'Introduction to Cryptography',
+            'Introduction to Blockchain',
+            'Introduction to Internet of Things',
+            'Introduction to Cloud Computing',
+            'Introduction to Big Data',
+            'Introduction to Data Analytics',
+            'Introduction to Data Visualization',
+            'Introduction to Machine Learning',
+            'Introduction to Deep Learning',
+            'Introduction to Natural Language Processing',
+            'Introduction to Computer Vision',
+            'Introduction to Speech Recognition',
+            'Introduction to Reinforcement Learning',
+            'Introduction to Supervised Learning',
+            'Introduction to Unsupervised Learning',
+            'Introduction to Semi-supervised Learning',
+            'Introduction to Transfer Learning',
+            'Introduction to Ensemble Learning',
         ];
 
         foreach ($courses as $course) {
@@ -76,6 +109,8 @@ class DatabaseSeeder extends Seeder
                 'description' => 'This is a description for ' . $course,
                 'image' => 'https://source.unsplash.com/random',
                 'program_id' => rand(1, 10),
+                'year' => rand(1, 4),
+                'semester' => rand(1, 2),
             ]);
         }
         // Seed Replies
@@ -98,9 +133,9 @@ class DatabaseSeeder extends Seeder
             $course->lessons()->saveMany(Lesson::factory(5)->make());
         });
 
-        // Add users to courses
+        // Add users to courses randomly and make the status of the user in the course as random
         Course::all()->each(function ($course) {
-            $course->users()->attach(User::all()->random(10));
+            $course->users()->attach(User::all()->random(10), ['status' => Arr::random([Status::enrolled, Status::completed])]);
         });
 
 

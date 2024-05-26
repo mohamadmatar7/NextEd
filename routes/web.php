@@ -114,6 +114,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/programs/{program}', [App\Http\Controllers\ProgramController::class, 'destroy'])->name('programs.destroy');
     // program showByUser
     Route::get('/programs/user/{user_id}', [App\Http\Controllers\ProgramController::class, 'showByUser'])->name('programs.showByUser');
+    // program showYear
+    Route::get('/programs/{program}/year/{year}', [App\Http\Controllers\ProgramController::class, 'showYear'])->name('programs.showYear');
 
     // ensure that the user is an admin
     Route::middleware('can:is-admin-or-principal')->group(function () {

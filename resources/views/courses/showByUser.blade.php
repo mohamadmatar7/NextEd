@@ -2,24 +2,16 @@
 <x-app-layout>
 
     <x-group-cards title="{{ __('template.Courses') }}">
-        @php
-            $iconPaths = [
-                asset('assets/icons/courses/course-1.svg'),
-                asset('assets/icons/courses/course-2.svg'),
-                asset('assets/icons/courses/course-3.svg'),
-                asset('assets/icons/courses/course-4.svg'),
-            ];
-        @endphp
         @foreach($courses as $item)
             @php
-                $randomIndex = array_rand($iconPaths);
+                $iconNumber = rand(1, 4);
             @endphp
             <x-group-card :route="route('courses.show', $item)"
                           :title="$item['name']"
                           :class="'flex-col-reverse justify-center gap-y-2'"
                           :bodyClass="'flex flex-col gap-y-1'"
                           :subtitle="$item['description']"
-                          :icon="$iconPaths[$randomIndex]"
+                          :icon="asset('assets/icons/courses/course-' . $iconNumber . '.svg')"
             />
         @endforeach
     </x-group-cards>

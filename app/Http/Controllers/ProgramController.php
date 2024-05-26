@@ -71,5 +71,11 @@ class ProgramController extends Controller
         return view('programs.showByUser', compact('programs'));
     }
 
-    
+    // show based on the years of the program
+    public function showYear(Program $program, $year)
+    {
+        $courses = $program->courses()->where('year', $year)->get();
+        return view('programs.showYear', compact('program', 'year', 'courses'));
+    }
+
 }

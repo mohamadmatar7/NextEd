@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+// Status enum
+use App\Enums\Status;
 
 return new class extends Migration
 {
@@ -15,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->integer('status')->default(Status::enrolled);
+            $table->timestamp('completed_at')->nullable();
             $table->timestamps();
         });
     }

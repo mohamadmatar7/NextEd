@@ -30,6 +30,7 @@ class ProgramFactory extends Factory
             'description' => $this->faker->sentence,
             'image' => $this->faker->imageUrl(),
             'category_id' => rand(1, 4),
+            'years' => rand(2, 4),
             'created_at' => fake()->dateTimeBetween('-1 years', 'now'),
         ];
     }

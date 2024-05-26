@@ -11,6 +11,8 @@ class Course extends Model
 
     protected $fillable = [
         'name',
+        'year',
+        'semester',
         'description',
         'image',
         'program_id',
@@ -38,7 +40,7 @@ class Course extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withPivot('status');
     }
 
 
