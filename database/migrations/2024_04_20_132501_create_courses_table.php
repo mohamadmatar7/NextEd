@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->integer('year')->default(1);
+            $table->string('study_year');
             $table->string('semester')->default(1);
             $table->string('start_date')->nullable();
             $table->string('end_date')->nullable();

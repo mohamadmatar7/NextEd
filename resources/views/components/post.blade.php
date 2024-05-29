@@ -1,6 +1,6 @@
 <li>
     <!--Post-->
-    <article>
+    <article class="@if($post->user->role == 1 || $post->user->role == 2 || $post->user->role == 3 || $post->user->role == 4) border-l-8 border-blue-500 @endif">
         <div class="flex p-4 pb-0 my-2">
             <a class="block" href="">
                 <div class="flex items-center">
@@ -14,6 +14,9 @@
                         <p class="text-base leading-6 font-medium ">
                             <span
                                 class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
+                                <span class="text-gray-700 font-semibold">
+                                    {{ \App\Enums\Role::getDescription($post->user->role) }}
+                                </span>
                                 {{ $post->user->name }}. {{ $post->created_at->diffForHumans() }}
                             </span>
                         </p>

@@ -12,6 +12,7 @@ class Course extends Model
     protected $fillable = [
         'name',
         'year',
+        'study_year',
         'semester',
         'description',
         'image',

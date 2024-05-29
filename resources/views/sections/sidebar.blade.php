@@ -1,4 +1,4 @@
-<div class="md:w-2/12 lg:w-[12.9%] relative bg-white dark:bg-gray-800 border-r border-gray-50 dark:border-gray-100">
+<div class="md:w-2/12 lg:w-[12.9%] sticky top-0 z-10 md:z-auto bg-white dark:bg-gray-800 border-r border-gray-50 dark:border-gray-100">
     <header class="md:sticky md:top-0 md:h-svh">
         <!-- Navbar (left side) -->
         <div class="w-full pr-2 flex justify-between md:block md:h-full md:hover:overflow-y-auto sidebar">

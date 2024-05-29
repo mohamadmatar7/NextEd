@@ -66,7 +66,7 @@ class ProgramController extends Controller
         // Fetch programs through the courses the user is enrolled in
         $programs = Program::whereHas('courses.users', function ($query) use ($user_id) {
             $query->where('user_id', $user_id);
-        })->get();
+        })->with('courses')->get();
 
         return view('programs.showByUser', compact('programs'));
     }

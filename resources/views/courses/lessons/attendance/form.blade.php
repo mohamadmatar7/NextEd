@@ -2,8 +2,9 @@
 
 <x-app-layout>
     <div class="mx-auto w-full">
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl w-full lg:py-8 h-full">
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl w-full lg:py-2 h-full">
             <div class="py-6 px-4 sm:px-10 bg-white dark:bg-gray-800">
+                <x-breadcrumb />
                 <div class="flex flex-col mb-6 gap-y-3">
                     <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100">
                         {{ __('template.Attendance') }} - {{ $lesson->name }}
@@ -29,7 +30,7 @@
 
                 <!-- Attendance Form -->
                 <div class="overflow-x-auto">
-                    <form action="{{ route('attendance.submit', $lesson->id) }}" method="POST">
+                    <form action="{{ route('attendance.submit', ['program' => $program->id, 'course' => $course->id, 'lessonId' => $lesson->id]) }}" method="POST">
                         @csrf
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead>

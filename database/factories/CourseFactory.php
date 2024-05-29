@@ -29,6 +29,7 @@ class CourseFactory extends Factory
                                                     'Introduction to Security']),
             'description' => $this->faker->paragraph,
             'year' => rand(1, 4), // $this->faker->randomElement([1, 2, 3, 4]
+            'study_year' => $this->faker->randomElement(['2022/23', '2023/24', '2024/25', '2025/26']),
             'semester' => rand(1, 2), // $this->faker->randomElement([1, 2]
             'start_date' => fake()->dateTimeBetween('-3 months', 'now'),
             'end_date' => fake()->dateTimeBetween('now', '+3 months'),

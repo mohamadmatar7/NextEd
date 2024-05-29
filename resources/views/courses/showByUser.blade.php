@@ -6,7 +6,7 @@
             @php
                 $iconNumber = rand(1, 4);
             @endphp
-            <x-group-card :route="route('courses.show', $item)"
+            <x-group-card :route="route('courses.show', ['course' => $item['id'], 'program' => $item['program_id']])"
                           :title="$item['name']"
                           :class="'flex-col-reverse justify-center gap-y-2'"
                           :bodyClass="'flex flex-col gap-y-1'"

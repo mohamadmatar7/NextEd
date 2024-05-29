@@ -3,14 +3,16 @@
 
 <x-app-layout>
     <div class="w-full mx-auto">
-        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl w-full lg:py-8 h-full">
+        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl w-full lg:py-2 h-full">
             <div class="py-6 px-4 sm:px-10 bg-white dark:bg-gray-800">
+                <x-breadcrumb />
                 <div class="flex flex-col lg:flex-row justify-between gap-y-3 mb-6">
                     <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100">
                         {{ $lesson->name }}
                     </h2>
                     @can('is-administrator')
-                        <a href="{{ route('courses.lessons.attendance.form', $lesson->id) }}" class="text-white font-bold py-2 px-4 rounded bg-gradient-to-r from-blue-500 to-blue-700 dark:from-gray-700 dark:to-gray-900 hover:from-blue-700 hover:to-blue-900 max-w-fit">
+                        <a href="{{ route('courses.lessons.attendance.form', ['program' => $program->id, 'course' => $course->id, 'lessonId' => $lesson->id]) }}"
+                        class="text-white font-bold py-2 px-4 rounded bg-gradient-to-r from-blue-500 to-blue-700 dark:from-gray-700 dark:to-gray-900 hover:from-blue-700 hover:to-blue-900 max-w-fit">
                             {{ __('template.Attendance') }}
                         </a>
                     @endcan

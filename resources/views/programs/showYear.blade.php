@@ -7,7 +7,7 @@
                 $iconNumber = rand(1, 4);
             @endphp
             @if ($course->year == $year)
-                <x-group-card :route="route('courses.show', ['course' => $course->id])"
+                <x-group-card :route="route('courses.show', ['course' => $course->id, 'program' => $program->id])"
                             :title="$course->name . ' - ' . 'S' . $course->semester"
                             :class="'flex-col-reverse justify-center gap-y-1'"
                             :bodyClass="'flex flex-col gap-y-1 items-center'"

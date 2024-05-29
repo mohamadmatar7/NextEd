@@ -110,6 +110,7 @@ class DatabaseSeeder extends Seeder
                 'image' => 'https://source.unsplash.com/random',
                 'program_id' => rand(1, 10),
                 'year' => rand(1, 4),
+                'study_year' => Arr::random(['2022/23', '2023/24', '2024/25', '2025/26']),
                 'semester' => rand(1, 2),
             ]);
         }

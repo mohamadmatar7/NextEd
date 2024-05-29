@@ -79,7 +79,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])->name('courses.index');
     Route::get('/courses/create', [App\Http\Controllers\CourseController::class, 'create'])->name('courses.create');
     Route::post('/courses', [App\Http\Controllers\CourseController::class, 'store'])->name('courses.store');
-    Route::get('/courses/{course}', [App\Http\Controllers\CourseController::class, 'show'])->name('courses.show');
+    Route::get('/programs/{program}/courses/{course}', [App\Http\Controllers\CourseController::class, 'show'])->name('courses.show');
     Route::get('/courses/{course}/edit', [App\Http\Controllers\CourseController::class, 'edit'])->name('courses.edit');
     Route::patch('/courses/{course}', [App\Http\Controllers\CourseController::class, 'update'])->name('courses.update');
     Route::delete('/courses/{course}', [App\Http\Controllers\CourseController::class, 'destroy'])->name('courses.destroy');
@@ -94,15 +94,17 @@ Route::middleware('auth')->group(function () {
     // users of a course
     Route::get('/courses/{course}/users', [App\Http\Controllers\CourseController::class, 'showUsers'])->name('courses.showUsers');
     // lessons of a course
-    Route::get('/courses/{course}/lessons', [App\Http\Controllers\CourseController::class, 'showLessons'])->name('courses.lessons.showLessons');
-    Route::get('/courses/{course}/lessons/{lesson}', [App\Http\Controllers\LessonController::class, 'show'])->name('courses.lessons.showLesson');
+    Route::get('/programs/{program}/courses/{course}/lessons', [App\Http\Controllers\CourseController::class, 'showLessons'])->name('courses.lessons.showLessons');
+    Route::get('/programs/{program}/courses/{course}/lessons/{lesson}', [App\Http\Controllers\LessonController::class, 'show'])->name('courses.lessons.showLesson');
     // assignments of a course
     Route::get('/courses/{course}/assignments', [App\Http\Controllers\CourseController::class, 'showAssignments'])->name('courses.showAssignments');
     Route::get('/courses/{course}/assignments/{assignment}', [App\Http\Controllers\CourseController::class, 'showAssignment'])->name('courses.showAssignment');
     // users of a course
     Route::get('/courses/{course}/users', [App\Http\Controllers\CourseController::class, 'showUsers'])->name('courses.showUsers');
     // administrators of a course
-    Route::get('/courses/{course}/administrators', [App\Http\Controllers\CourseController::class, 'showAdministrators'])->name('courses.showAdministrators');
+    Route::get('/programs/{program}/courses/{course}/administrators', [App\Http\Controllers\CourseController::class, 'showAdministrators'])->name('courses.showAdministrators');
+    // students of a course
+    Route::get('/programs/{program}/courses/{course}/students', [App\Http\Controllers\CourseController::class, 'showStudents'])->name('courses.showStudents');
 
     // programs
     Route::get('/programs', [App\Http\Controllers\ProgramController::class, 'index'])->name('programs.index');
@@ -135,8 +137,10 @@ Route::middleware('auth')->group(function () {
     // ensure that the user is an administrator
     Route::middleware('can:is-administrator')->group(function () {
         // attendances
-        Route::get('/courses/lessons/attendance/{lessonId}', [AttendanceController::class, 'showAttendanceForm'])->name('courses.lessons.attendance.form');
-        Route::post('/courses/lessons/attendance/{lessonId}', [AttendanceController::class, 'submitAttendance'])->name('attendance.submit');
+        // Route::get('/courses/lessons/attendance/{lessonId}', [AttendanceController::class, 'showAttendanceForm'])->name('courses.lessons.attendance.form');
+        // Route::post('/courses/lessons/attendance/{lessonId}', [AttendanceController::class, 'submitAttendance'])->name('attendance.submit');
+        Route::get('/programs/{program}/courses/{course}/lessons/{lessonId}/attendance', [AttendanceController::class, 'showAttendanceForm'])->name('courses.lessons.attendance.form');
+        Route::post('/programs/{program}/courses/{course}/lessons/{lessonId}/attendance', [AttendanceController::class, 'submitAttendance'])->name('attendance.submit');
     });
 
 

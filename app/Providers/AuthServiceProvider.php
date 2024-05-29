@@ -26,36 +26,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // define a gate to check if the user is an admin
-        // Gate::define('is-admin', function ($user) {
-        //     return $user->role === 4;
-        // });
-
-        // // define a gate to check if the user is a principal
-        // Gate::define('is-principal', function ($user) {
-        //     return $user->role === 3;
-        // });
-
-        // // define a gate to check if the user is a admin or principal
-        // Gate::define('is-admin-or-principal', function ($user) {
-        //     return $user->role === 4 || $user->role === 3;
-        // });
-
-        // // define a gate to check if the user is an instructor
-        // Gate::define('is-instructor', function ($user) {
-        //     return $user->role === 2;
-        // });
-
-        // // define a gate to check if the user is a teacher
-        // Gate::define('is-teacher', function ($user) {
-        //     return $user->role === 1;
-        // });
-
-        // // define a gate to check if the user is a instructor or teacher
-        // Gate::define('is-instructor-or-teacher', function ($user) {
-        //     return $user->role === 2 || $user->role === 1;
-        // });
-
         // Define gates using roles from the Role enum
         Gate::define('is-admin', fn($user) => $user->role === Role::ADMIN);
         Gate::define('is-principal', fn($user) => $user->role === Role::PRINCIPAL);

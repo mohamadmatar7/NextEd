@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\Program;
 
 class LessonController extends Controller
 {
@@ -16,9 +17,10 @@ class LessonController extends Controller
     }
 
 
-    public function show(Course $course, Lesson $lesson)
+    public function show(Program $program, Course $course, Lesson $lesson)
     {
-        return view('courses.lessons.showLesson', compact('course', 'lesson'));
+        
+        return view('courses.lessons.showLesson', compact('course', 'lesson', 'program'));
     }
 
 

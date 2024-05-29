@@ -43,8 +43,8 @@
                 <img src="{{ asset('assets/icons/nav/courses.svg') }}" alt="Courses" class="h-6 w-8 mr-2">
                 <span class="text-sm">{{ __('template.Courses') }}</span>
             </a>
-            <a href="#"
-                class="mt-1 group flex items-center justify-start px-2 py-2 text-base leading-6 font-medium rounded-e-full {{ Route::currentRouteName() == 'chat' ? 'bg-blue-700 dark:bg-gray-900 text-white' : 'bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white' }}">
+            <a href="/messenger"
+                class="mt-1 group flex items-center justify-start px-2 py-2 text-base leading-6 font-medium rounded-e-full {{ Route::currentRouteName() == 'messenger' ? 'bg-blue-700 dark:bg-gray-900 text-white' : 'bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white' }}">
                 <img src="{{ asset('assets/icons/nav/chat.svg') }}" alt="Chat" class="h-6 w-8 mr-2">
                 <span class="text-sm">Chat</span>
             </a>
