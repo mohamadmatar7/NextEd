@@ -7,8 +7,9 @@
                 <div class="text-xl font-medium text-white group-hover:text-yellow-300 transition duration-300">{{ $title }}</div>
                 <p class="text-gray-200 group-hover:text-yellow-100 transition duration-300">{{ $subtitle }}</p>
             </div>
-            <div class="flex-shrink-0">
-                <img src="{{ $icon }}" alt="{{ $title }} icon" class="h-12 w-12 text-white group-hover:text-yellow-300 transition duration-300">
+            <div class="flex-shrink-0 {{ @$iconContainerClass }}">
+                <img src="{{ $icon }}" alt="{{ $title }} icon" class="@if(!@$iconClass) h-12 w-12 @endif {{ @$iconClass }}
+                text-white group-hover:text-yellow-300 transition duration-300">
             </div>
         </div>
     </div>

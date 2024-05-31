@@ -151,7 +151,7 @@ class CourseController extends Controller
 
     public function showAnnouncements(Program $program, Course $course)
     {
-        $announcements = $course->announcements()->latest()->paginate(10);
+        $announcements = $course->announcements()->latest()->paginate(9);
         $program = $course->program;
         return view('courses.announcements.showAnnouncements', compact('course', 'announcements', 'program'));
     }

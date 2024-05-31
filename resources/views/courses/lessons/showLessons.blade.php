@@ -9,7 +9,9 @@
                           :class="'flex-col-reverse justify-center gap-y-2'"
                           :bodyClass="'flex flex-col gap-y-1'"
                             :subtitle="$lesson->description"
-                            :icon="asset('assets/icons/lessons/lesson.svg')"
+                            :iconContainerClass="'w-full'"
+                            :icon="asset('assets/icons/group/lessons.svg')"
+                            :iconClass="'w-full h-40 object-cover'"
             />
         @endforeach
     </x-group-cards>
