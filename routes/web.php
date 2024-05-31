@@ -58,6 +58,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // show specific user
+    Route::get('/users/role/{role}/{user}', [UserController::class, 'showSpecificUser'])->name('users.showSpecificUser');
+
 
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
@@ -88,9 +91,14 @@ Route::middleware('auth')->group(function () {
     // course showByProgram
     Route::get('/courses/program/{program_id}/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showByProgram'])->name('courses.showByProgram');  
     // assignments of a course
-    Route::get('/courses/{course}/assignments', [App\Http\Controllers\AssignmentController::class, 'showAssignments'])->name('courses.showAssignments');
+    Route::get('/programs/{program}/courses/{course}/assignments', [App\Http\Controllers\CourseController::class, 'showAssignments'])->name('courses.assignments.showAssignments');
+    Route::get('/programs/{program}/courses/{course}/assignments/{assignment}', [App\Http\Controllers\CourseController::class, 'showAssignment'])->name('courses.assignments.showAssignment');
+    // Assignments of user 
+    Route::get('/programs/{program}/courses/{course}/assignments/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showAssignmentsByUser'])->name('courses.assignments.showAssignmentsByUser');
+    Route::get('/programs/{program}/courses/{course}/assignments/{assignment}/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showAssignmentByUser'])->name('courses.assignments.showAssignmentByUser');
     // announcements of a course
-    Route::get('/courses/{course}/announcements', [App\Http\Controllers\AnnouncementController::class, 'showAnnouncements'])->name('courses.showAnnouncements');
+    Route::get('/programs/{program}/courses/{course}/announcements', [App\Http\Controllers\CourseController::class, 'showAnnouncements'])->name('courses.announcements.showAnnouncements');
+    Route::get('/programs/{program}/courses/{course}/announcements/{announcement}', [App\Http\Controllers\CourseController::class, 'showAnnouncement'])->name('courses.announcements.showAnnouncement');
     // users of a course
     Route::get('/courses/{course}/users', [App\Http\Controllers\CourseController::class, 'showUsers'])->name('courses.showUsers');
     // lessons of a course
@@ -124,9 +132,9 @@ Route::middleware('auth')->group(function () {
         // users
         Route::get('/users', [App\Http\Controllers\ProfileController::class, 'index'])->name('users.index');
         // user showByRoles
-        Route::get('/users/role', [App\Http\Controllers\ProfileController::class, 'showByUserRoles'])->name('users.showByRoles');
+        Route::get('/users/role', [App\Http\Controllers\UserController::class, 'showByUserRoles'])->name('users.showByRoles');
         // user showByRole
-        Route::get('/users/role/{role}', [App\Http\Controllers\ProfileController::class, 'showByRole'])->name('users.showByRole');
+        Route::get('/users/role/{role}', [App\Http\Controllers\UserController::class, 'showByRole'])->name('users.showByRole');
 
         // categories
         Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');

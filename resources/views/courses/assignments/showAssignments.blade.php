@@ -4,7 +4,7 @@
 
     <x-group-cards title="{{ __('template.Assignments in') }} {{ @$course->name }}">
         @foreach($assignments as $assignment)
-            <x-group-card :route="route('courses.showAssignment', [$course, $assignment])"
+            <x-group-card :route="route('courses.assignments.showAssignment', ['program' => $program->id, 'course' => $course->id, 'assignment' => $assignment->id])"
                           :title="$assignment->name"
                           :class="'flex-col-reverse justify-center gap-y-2'"
                           :bodyClass="'flex flex-col gap-y-1'"

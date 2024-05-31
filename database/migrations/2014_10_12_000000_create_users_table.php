@@ -16,6 +16,11 @@ return new class extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('name');
+            $table->string('father_name')->nullable();
+            $table->string('mother_name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('emergency_phone')->nullable();
+            $table->string('address')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('role'); // 0 = student, 1 = teacher, 2 = instructor, 3 = principal, 4 = admin.

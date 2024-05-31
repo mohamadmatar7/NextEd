@@ -13,6 +13,7 @@ class General extends Controller
         $posts = Post::with('user', 'comments', 'comments.user', 'comments.replies', 'comments.replies.user', 'comments.user.likes', 'comments.user.media', 'media', 'likes')
             ->latest()
             ->get();
+
         $announcements = Announcement::with('media', 'user', 'likes', 'program', 'course')
             ->latest()
             ->get();

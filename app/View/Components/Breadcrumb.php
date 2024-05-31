@@ -50,6 +50,13 @@ class Breadcrumb extends Component
                     'url' => route('programs.showByUser', auth()->id()),
                 ];
             }
+
+            elseif ($segmentName === 'Assignments') {
+                $breadcrumbs[] = [
+                    'name' => $segmentName,
+                    'url' => route('courses.assignments.showAssignmentsByUser', ['program' => $segments[$index - 1], 'course' => $segments[$index + 1], auth()->id()]),
+                ];
+            }
             
             elseif ($segmentName !== 'User' && $segmentName !== 'Users') {
                 $breadcrumbs[] = [
@@ -83,8 +90,14 @@ class Breadcrumb extends Component
                 case 'lessons':
                     $startDate = DB::table('lessons')->where('id', $segment)->value('start_time');
                     return $startDate ? date('Y-m-d', strtotime($startDate)) : 'Lesson ' . $segment;
+                case 'assignments':
+                    $assignmentName = DB::table('assignments')->where('id', $segment)->value('name') ?? 'Assignment ' . $segment;
+                    return strlen($assignmentName) > 15 ? $this->abbreviateName($assignmentName) : $assignmentName;
                 case 'user':
-                    return 'User'; // Return 'User' for the 'user' segment
+                    return 'User';
+                case 'Student' || 'Teacher' || 'Instructor' || 'Principal' || 'Admin':
+                    $username = DB::table('users')->where('id', $segment)->value('name') ?? 'User ' . $segment;
+                    return $username;
                 case 'year':
                     $number = ['First Year', 'Second Year', 'Third Year', 'Fourth Year', 'Fifth Year'];
                     return $number[$segment - 1] ?? 'Year ' . $segment;

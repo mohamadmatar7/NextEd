@@ -104,5 +104,10 @@ class AnnouncementController extends Controller
 
         return redirect()->route('announcements.index');
     }
+
+
+    // show announcemnts of courses and get the program also in the param
+    
+
     
 }

@@ -6,7 +6,7 @@
     </div>
     <div class="overflow-y-aside flex flex-col mt-4">
         @foreach($Items as $item)
-        <a href="{{ route('announcements.show', $item) }}"
+        <a href="{{ route('courses.announcements.showAnnouncement', ['program' => $item->program->id, 'course' => $item->course->id, 'announcement' => $item->id]) }}"
             class="flex flex-col p-4 border-gray-200 dark:border-gray-600 @if(!$loop->last) border-b @endif">
             <div class="bg-gray-100 dark:bg-gray-700 rounded-lg shadow-md">
                 @if ($item->image)

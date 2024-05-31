@@ -21,7 +21,6 @@ class AssignmentFactory extends Factory
             'description' => $this->faker->paragraph,
             'due_date' => $this->faker->dateTimeBetween('now', '+1 month'),
             'course_id' => rand(1, 10),
-            'completed' => false,
             'notes' => $this->faker->paragraph,
             'created_at' => fake()->dateTimeBetween('-1 years', 'now'),
 

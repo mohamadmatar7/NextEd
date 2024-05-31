@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Assignment;
 use App\Models\Program;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -19,14 +20,21 @@ class CourseController extends Controller
     {
         $program = $course->program;
         $items = [
+            // [
+            //     'route' => route('courses.assignments.showAssignments', [$program->id, $course->id]),
+            //     'title' => __('template.Assignments'),
+            //     'subtitle' => __('Manage and view all assignments'),
+            //     'icon' => asset('assets/icons/group/assignments.svg'),
+            // ],
             [
-                'route' => route('courses.showAssignments', $course->id),
+                // the course id is passed as a parameter with the user id with program id
+                'route' => route('courses.assignments.showAssignmentsByUser', [ $program->id, $course->id, auth()->user()->id]),
                 'title' => __('template.Assignments'),
                 'subtitle' => __('Manage and view all assignments'),
                 'icon' => asset('assets/icons/group/assignments.svg'),
             ],
             [
-                'route' => route('courses.showAnnouncements', $course->id),
+                'route' => route('courses.announcements.showAnnouncements', [$program->id, $course->id]),
                 'title' => __('template.Announcements'),
                 'subtitle' => __('Manage and view all announcements'),
                 'icon' => asset('assets/icons/group/announcements.svg'),
@@ -141,20 +149,46 @@ class CourseController extends Controller
         return view('courses.showStudents', compact('course', 'students', 'program'));
     }
 
-    public function showAnnouncements(Course $course)
+    public function showAnnouncements(Program $program, Course $course)
     {
-        $announcements = $course->announcements;
-        return view('courses.showAnnouncements', compact('course', 'announcements'));
-    }
-    
-    public function showAssignments(Course $course)
-    {
-        $assignments = $course->assignments;
-        return view('courses.showAssignments', compact('course', 'assignments'));
+        $announcements = $course->announcements()->latest()->paginate(10);
+        $program = $course->program;
+        return view('courses.announcements.showAnnouncements', compact('course', 'announcements', 'program'));
     }
 
-    public function showAssignment(Course $course, Assignment $assignment)
+    public function showAnnouncement(Program $program, Course $course, Announcement $announcement)
     {
-        return view('courses.showAssignment', compact('course', 'assignment'));
+        $program = $course->program;
+        $relatedAnnouncements = $course->announcements()->where('id', '!=', $announcement->id)->latest()->take(3)->get();
+        return view('courses.announcements.showAnnouncement', compact('course', 'announcement', 'program', 'relatedAnnouncements'));
+    }
+    
+    public function showAssignments(Program $program, Course $course)
+    {
+        $assignments = $course->assignments;
+        $program = $course->program;
+        return view('courses.assignments.showAssignments', compact('course', 'assignments', 'program'));
+    }
+
+    public function showAssignmentsByUser(Program $program, Course $course, $user_id)
+    {
+        $assignments = Assignment::whereHas('users', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })->get();
+        // Ensure $course is passed to the view
+        return view('courses.assignments.showAssignmentsByUser', compact('assignments', 'program', 'course'));
+    }
+    
+    public function showAssignmentByUser(Program $program, Course $course, Assignment $assignment, $user_id)
+    {
+        $course = $assignment->course;
+        $program = $course->program;
+        return view('courses.assignments.showAssignmentByUser', compact('course', 'assignment', 'program'));
+    }
+
+    public function showAssignment(Program $program, Course $course, Assignment $assignment)
+    {
+        $program = $course->program;
+        return view('courses.assignments.showAssignment', compact('course', 'assignment', 'program'));
     }
 }

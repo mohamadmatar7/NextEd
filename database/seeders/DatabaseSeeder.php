@@ -13,8 +13,6 @@ use App\Models\Reply;
 use App\Models\Like;
 use App\Models\Announcement;
 use App\Models\Assignment;
-
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Arr;
 
 class DatabaseSeeder extends Seeder
@@ -119,14 +117,15 @@ class DatabaseSeeder extends Seeder
         Reply::factory(3)->replyTo(1)->create();
         
         // Seed Likes
-        Like::factory(10)->create();
+        // Like::factory(300)->create();
         
         // Seed Announcements
-        Announcement::factory(10)->create();
+        Announcement::factory(200)->create();
         
-        // Create assignments for each user
+        // Create assignments for each user and likes for each user
         User::all()->each(function ($user) {
-            $user->assignments()->saveMany(Assignment::factory(5)->make());
+            $user->assignments()->saveMany(Assignment::factory(10)->make());
+            $user->likes()->saveMany(Like::factory(20)->make());
         });
 
         // Create lessons for each course
@@ -138,6 +137,11 @@ class DatabaseSeeder extends Seeder
         Course::all()->each(function ($course) {
             $course->users()->attach(User::all()->random(10), ['status' => Arr::random([Status::enrolled, Status::completed])]);
         });
+
+        // create likes for each user but don't create new users
+        // User::all()->each(function ($user) {
+        //     $user->likes()->saveMany(Like::factory(30)->make());
+        // });
 
 
         // Attendances

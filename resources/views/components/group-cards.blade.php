@@ -8,6 +8,13 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {{ $slot }}
             </div>
-        </div>
+            @if($isPagination ?? false)
+                <nav role="navigation" aria-label="Pagination Navigation" class="flex justify-center mt-8">
+                    <ul class="pagination flex items-center space-x-2">
+                        {!! $isPagination !!}
+                    </ul>
+                </nav>
+            @endif
     </div>
 </div>
+

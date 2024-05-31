@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('assignment_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->boolean('completed')->default(false);
             $table->text('notes')->nullable();
             $table->dateTime('completed_at')->nullable();
             $table->timestamps();

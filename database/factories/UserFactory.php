@@ -28,6 +28,11 @@ class UserFactory extends Factory
             'last_name' => fake()->lastName(),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'father_name' => fake()->optional()->name(),
+            'mother_name' => fake()->optional()->name(),
+            'phone' => fake()->optional()->phoneNumber(),
+            'emergency_phone' => fake()->optional()->phoneNumber(),
+            'address' => fake()->optional()->address(),
             'email_verified_at' => now(),
             'role' => fake()->numberBetween(0, 4), // 0 = student, 1 = teacher, 2 = instructor, 3 = principal, 4 = admin
             'password' => static::$password ??= Hash::make('password'),
