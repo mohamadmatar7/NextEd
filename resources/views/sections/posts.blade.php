@@ -1,4 +1,4 @@
-<div class="md:w-7/12 lg:w-[63%] relative">
+<div class="relative @if (!@$loadMore)md:w-7/12 lg:w-[63%]@endif">
     <div class="flex">
         <section class="bg-white dark:bg-gray-900 py-6 px-2 antialiased">
             <!--Content (Center)-->
@@ -59,11 +59,49 @@
                 <hr class="border-gray-300 border-2">
                 @endauth
 
-            <ul class="divide-y divide-gray-200">
+            <ul class="divide-y divide-gray-200" @if (@$loadMore) id="post-list" @endif>
                 @foreach ($posts as $post)
                     @include('components.post')
                 @endforeach
             </ul>
+
+            @if (@$loadMore)
+                <div class="flex justify-center my-5">
+                    <x-secondary-button class="hidden" id="load-more-btn" onclick="loadMorePosts('{{ $posts->nextPageUrl() }}')">{{ __('template.Load more') }}</x-secondary-button>
+                </div>
+                <script>
+                    function loadMorePosts(url) {
+                        if (url) {
+                            fetch(url)
+                                .then(response => response.text())
+                                .then(data => {
+                                    const parser = new DOMParser();
+                                    const html = parser.parseFromString(data, 'text/html');
+                                    const posts = html.getElementById('post-list').innerHTML;
+                                    document.getElementById('post-list').innerHTML += posts;
+                                    const loadMoreBtn = html.getElementById('load-more-btn');
+                                    if (loadMoreBtn) {
+                                        console.log(document.getElementById('post-list').children.length);
+                                        document.getElementById('load-more-btn').replaceWith(loadMoreBtn);
+                                    } else {
+                                        document.getElementById('load-more-btn').remove();
+                                    }
+                                });
+                        } else {
+                            document.getElementById('load-more-btn').remove();
+                        }
+                    }
+
+                    window.addEventListener('scroll', () => {
+                        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                            const loadMoreBtn = document.getElementById('load-more-btn');
+                            if (loadMoreBtn) {
+                                loadMoreBtn.click();
+                            }
+                        }
+                    });
+                </script>
+            @endif
         </section>
     </div>
 </div>

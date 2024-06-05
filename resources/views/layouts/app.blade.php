@@ -10,7 +10,7 @@
 
             <!-- Page Content -->
             <main class="relative flex flex-col md:flex-row w-full md:w-10/12 lg:w-[87.1%] min-h-screen">
-                {{ $slot }}
+                {{ @$slot }}
             </main>
         </div>
         @yield('scripts')

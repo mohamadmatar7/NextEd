@@ -63,6 +63,9 @@ Route::middleware('auth')->group(function () {
 
 
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    Route::get('/community', [PostController::class, 'index'])->name('posts.index');
+
+
 
     // likes
     Route::post('/like/comment/{comment}', [LikeController::class, 'likeComment'])->name('like.comment');

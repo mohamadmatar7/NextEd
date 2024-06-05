@@ -13,6 +13,7 @@ use App\Models\Reply;
 use App\Models\Like;
 use App\Models\Announcement;
 use App\Models\Assignment;
+use App\Models\Post;
 use Illuminate\Support\Arr;
 
 class DatabaseSeeder extends Seeder
@@ -125,7 +126,7 @@ class DatabaseSeeder extends Seeder
         // Create assignments for each user and likes for each user
         User::all()->each(function ($user) {
             $user->assignments()->saveMany(Assignment::factory(10)->make());
-            $user->likes()->saveMany(Like::factory(20)->make());
+            $user->posts()->saveMany(Post::factory(10)->make());
         });
 
         // Create lessons for each course

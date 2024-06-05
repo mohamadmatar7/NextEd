@@ -12,8 +12,22 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::with('user', 'comments', 'comments.user', 'comments.replies', 'comments.replies.user', 'comments.user.likes', 'comments.user.media', 'media', 'likes')
+        ->latest()
+        ->paginate(15);
+        return view('posts.index', compact('posts'));
     }
+
+
+    // public function getPostsHtml(Request $request)
+    // {
+    //     $posts = Post::with('user', 'media', 'likes', 'comments')
+    //                  ->orderBy('created_at', 'desc')
+    //                  ->paginate(15);
+
+    //     return view('posts.index', compact('posts'))->render();
+    // }
+
 
     /**
      * Show the form for creating a new resource.

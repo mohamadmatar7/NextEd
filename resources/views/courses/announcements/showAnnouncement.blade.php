@@ -11,8 +11,12 @@
                             <p class="text-gray-500">{{ $announcement->created_at->format('F d, Y') }}</p>
                             <h1 class="mt-2 text-3xl font-bold text-gray-900 sm:text-5xl">{{ $announcement->title }}
                             </h1>
-                            <p class="mt-6 text-lg text-gray-700">{{ __('template.By') }} <span class="font-semibold">{{
-                                    $announcement->user->name }}</span></p>
+                            @php
+                                $roleString = \App\Enums\Role::getDescription($announcement->user->role);
+                            @endphp
+                            <p class="mt-6 text-lg text-gray-700">{{ __('template.By') }} <a href="{{ route('users.showSpecificUser', ['role' => $roleString, 'user' => $announcement->user->id]) }}"
+                            class="font-semibold">{{
+                                    $announcement->user->name }}</a></p>
 
                             <img class="sm:h-[34rem] mt-10 w-full object-cover" src="{{ $announcement->image }}"
                                 alt="Featured Image" />
