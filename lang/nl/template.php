@@ -25,6 +25,7 @@ return [
     'Announcement' => 'Aankondiging',
     'Announcements' => 'Aankondigingen',
     'Announcements in' => 'Aankondigingen in',
+    'Are you sure you want to delete' => 'Ben je zeker dat je wilt verwijderen',
     'Are you sure you want to delete your account?' => 'Weet je zeker dat je je account wilt verwijderen?',
     'Assignment' => 'Opdracht',
     'Assignments' => 'Opdrachten',
@@ -57,6 +58,7 @@ return [
     'Create Program' => 'Opleiding aanmaken',
     'Current Password' => 'Huidig wachtwoord',
     'Dashboard' => 'Dashboard',
+    'Delete' => 'Verwijderen',
     'Delete Account' => 'Account verwijderen',
     'Department Announcements' => 'Afdelings Aankondigingen',
     'Discussion' => 'Discussie',
@@ -156,6 +158,7 @@ return [
     'Your Comment' => 'Jouw reactie',
     'Your email address is unverified.' => 'Je e-mailadres is niet geverifieerd.',
     "You're logged in!" => 'Je bent ingelogd!',
+    'Once this user is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete this user.' => 'Zodra deze gebruiker is verwijderd, worden al zijn bronnen en gegevens permanent verwijderd. Voer je wachtwoord in om te bevestigen dat je deze gebruiker permanent wilt verwijderen.',
     'Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.' => 'Zodra je account is verwijderd, worden al je bronnen en gegevens permanent verwijderd. Voordat je je account verwijdert, download je alle gegevens of informatie die je wilt behouden.',
     'Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.' => 'Zodra je account is verwijderd, worden al je bronnen en gegevens permanent verwijderd. Voer je wachtwoord in om te bevestigen dat je je account permanent wilt verwijderen.',
 

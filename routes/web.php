@@ -12,6 +12,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,24 +133,22 @@ Route::middleware('auth')->group(function () {
 
     // ensure that the user is an admin
     Route::middleware('can:is-admin-or-principal')->group(function () {
+        // user destroy
+        Route::delete('/users/role/{role}/{user}', [UserController::class, 'destroySpecificUser'])->name('users.destroySpecificUser');
+    });
+
+    // ensure that the user is an administrator
+    Route::middleware('can:is-administrator')->group(function () {
+        // categories
+        Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');
+        // show category
+        Route::get('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'show'])->name('categories.show');
         // users
         Route::get('/users', [App\Http\Controllers\ProfileController::class, 'index'])->name('users.index');
         // user showByRoles
         Route::get('/users/role', [App\Http\Controllers\UserController::class, 'showByUserRoles'])->name('users.showByRoles');
         // user showByRole
         Route::get('/users/role/{role}', [App\Http\Controllers\UserController::class, 'showByRole'])->name('users.showByRole');
-
-        // categories
-        Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');
-        // show category
-        Route::get('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'show'])->name('categories.show');
-    });
-
-    // ensure that the user is an administrator
-    Route::middleware('can:is-administrator')->group(function () {
-        // attendances
-        // Route::get('/courses/lessons/attendance/{lessonId}', [AttendanceController::class, 'showAttendanceForm'])->name('courses.lessons.attendance.form');
-        // Route::post('/courses/lessons/attendance/{lessonId}', [AttendanceController::class, 'submitAttendance'])->name('attendance.submit');
         Route::get('/programs/{program}/courses/{course}/lessons/{lessonId}/attendance', [AttendanceController::class, 'showAttendanceForm'])->name('courses.lessons.attendance.form');
         Route::post('/programs/{program}/courses/{course}/lessons/{lessonId}/attendance', [AttendanceController::class, 'submitAttendance'])->name('attendance.submit');
     });

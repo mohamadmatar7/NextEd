@@ -81,4 +81,30 @@ class UserController extends Controller
         return view('users.showSpecificUser', compact('user', 'role'));
         
     }
+
+    public function destroySpecificUser($role, $user_id)
+    {
+        // Get the role map from the config file
+        $roleMap = config('roles');
+
+        // Check if the role exists in the role map
+        if (!in_array($role, $roleMap)) {
+            abort(404, 'Role not found');
+        }
+
+        // Get the role ID from the role map
+        $roleId = array_search($role, $roleMap);
+
+        // Fetch the user with the specified role and ID along with their courses and programs
+        $user = User::where('role', $roleId)->with(['courses', 'courses.program'])->find($user_id);
+
+        // Check if the user exists
+        if (!$user) {
+            abort(404, 'User not found');
+        }
+
+        $user->delete();
+
+        return redirect()->route('users.showByRole', $role);
+    }
 }
