@@ -2,9 +2,9 @@
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl w-full lg:py-2 h-full">
         <div class="py-6 px-4 sm:px-10 bg-white dark:bg-gray-800">
             <x-breadcrumb />
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
                 {{ $title }}
-            </h2>
+            </h1>
             <div class="flex justify-between items-baseline mb-4">
                 <div class="relative w-1/2 mb-4">
                     <input type="text" id="search" name="search" class="border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary placeholder-gray-500 py-2 px-4 block w-full sm:text-sm" placeholder="{{ __('template.Search..') }}">

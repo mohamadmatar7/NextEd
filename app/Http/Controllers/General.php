@@ -17,9 +17,10 @@ class General extends Controller
 
         $announcements = Announcement::with('media', 'user', 'likes', 'program', 'course')
             ->latest()
+            ->limit(7)
             ->get();
 
-        // get announcements for of program that the user is enrolled in
+        // get announcements for of program that the user is enrolled in and limit it to 10
         $announcementsPrograms = auth()->user()->courses->map(function ($course) {
             return $course->program->announcements;
         })->flatten();

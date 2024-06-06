@@ -80,6 +80,8 @@ class Breadcrumb extends Component
                     return DB::table('categories')->where('id', $segment)->value('name') ?? 'Category ' . $segment;
                 case 'programs':
                     return DB::table('programs')->where('id', $segment)->value('name') ?? 'Program ' . $segment;
+                case 'announcements':
+                    return DB::table('announcements')->where('id', $segment)->value('title') ?? 'Announcement ' . $segment;
                 case 'courses':
                     $courseName = DB::table('courses')->where('id', $segment)->value('name') ?? 'Course ' . $segment;
                     // return strlen($courseName) > 15 ? $this->abbreviateName($courseName) : $courseName;

@@ -2,12 +2,12 @@
     <!--Aside menu (right side)-->
     <div class="py-6 px-2 sm:sticky sm:top-0 bg-white dark:bg-gray-800 max-h-svh">
         <!--Announcements specific section-->
-        <x-announcement :Items="$announcementsPrograms" loopTitle="{{ __('template.Program Announcements') }}" />
+        <x-announcement :Items="$announcementsPrograms" loopTitle="{{ __('template.Program Announcements') }}" route="{{ route('announcements.index') }}" />
 
         <hr class="mt-8">
 
         <!--Announcements general-->
-        <x-announcement :Items="$announcements" loopTitle="{{ __('template.General Announcements') }}" />
+        <x-announcement :Items="$announcements" loopTitle="{{ __('template.General Announcements') }}" route="{{ route('announcements.index') }}" />
 
     </div>
 </div>

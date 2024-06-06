@@ -1,5 +1,5 @@
 
-@section('title', __('template.Posts'))
+@section('title', __('template.Community'))
 
 
 <x-app-layout>

@@ -1,11 +1,21 @@
 <div class="relative @if (!@$loadMore)md:w-7/12 lg:w-[63%]@endif">
-    <div class="flex">
-        <section class="bg-white dark:bg-gray-900 py-6 px-2 antialiased">
+    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl w-full lg:py-2 h-full">
+        <section class="bg-white dark:bg-gray-900 py-6 px-4 sm:px-10 antialiased">
+            @if (@$loadMore)
+                <x-breadcrumb />
+            @endif
             <!--Content (Center)-->
-                <div class="flex">
+                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center">
                     <div class="flex-1">
-                        <h2 class="px-4 py-4 text-4xl font-extrabold dark:text-white">{{ __('template.Community') }}</h2>
+                        <h1 class="text-4xl mb-2 lg:mb-4 font-extrabold dark:text-white">{{ __('template.Community') }}</h1>
                     </div>
+                    @if (!@$loadMore)
+                    <div class="flex">
+                        <a href="{{ route('posts.index') }}" class="font-semibold dark:text-white px-4 pt-2 pb-4 lg:py-2 text-gray-600 hover:underline dark:hover:text-gray-300 hover:text-gray-500">
+                            {{ __('template.View all posts') }}
+                        </a>
+                    </div>
+                    @endif
                 </div>
                 <!--middle create Post above icons-->
                 @auth

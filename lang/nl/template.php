@@ -138,6 +138,8 @@ return [
     'Users with role' => 'Gebruikers met rol',
     'Verify Your Email Address' => 'Verifieer je e-mailadres',
     'View' => 'Bekijken',
+    'View all' => 'Alles bekijken',
+    'View all posts' => 'Alle berichten bekijken',
     'View Profile' => 'Profiel bekijken',
     'View Program' => 'Opleiding bekijken',
     'View Course' => 'Cursus bekijken',

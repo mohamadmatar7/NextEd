@@ -9,13 +9,21 @@ class AnnouncementController extends Controller
 {
     public function index()
     {
-        $announcements = Announcement::all();
+        // paginate the announcements
+        $announcements = Announcement::with('media', 'user', 'likes', 'program', 'course')
+            ->latest()
+            ->paginate(10);
         return view('announcements.index', compact('announcements'));
     }
 
     public function show(Announcement $announcement)
     {
-        return view('announcements.show', compact('announcement'));
+        $relatedAnnouncements = Announcement::where('id', '!=', $announcement->id)
+            ->where('program_id', $announcement->program_id)
+            ->latest()
+            ->take(3)
+            ->get();
+        return view('announcements.show', compact('announcement', 'relatedAnnouncements'));
     }
 
     public function create()

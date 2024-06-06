@@ -1,12 +1,16 @@
-@props(['Items', 'loopTitle'])
+@props(['Items', 'loopTitle', 'route'])
 
-<div class="flex flex-col mb-6" style="height: 46.5vh;">
-    <div class="flex">
-        <h3 class="px-4 pt-4 pb-2 text-3xl font-extrabold dark:text-white">{{ $loopTitle }}</h3>
-    </div>
-    <div class="overflow-y-aside flex flex-col mt-4">
+<div class="flex flex-col mb-6 md:h-[45.5vh]">
+    <a href="{{ $route }}"
+        class="flex hover:underline px-4 pt-4 hover:text-gray-600 dark:hover:text-gray-300  dark:text-white">
+        <h3 class="text-3xl font-extrabold">{{ $loopTitle }}</h3>
+    </a>
+    <div class="overflow-y-aside flex flex-col mt-1">
         @foreach($Items as $item)
+        <!--
         <a href="{{ route('courses.announcements.showAnnouncement', ['program' => $item->program->id, 'course' => $item->course->id, 'announcement' => $item->id]) }}"
+        -->
+        <a href="{{ route('announcements.show', ['announcement' => $item->id]) }}"
             class="flex flex-col p-4 border-gray-200 dark:border-gray-600 @if(!$loop->last) border-b @endif">
             <div class="bg-gray-100 dark:bg-gray-700 rounded-lg shadow-md">
                 @if ($item->image)
