@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Program;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,8 @@ class ProgramController extends Controller
 
     public function create()
     {
-        return view('programs.create');
+        $categories = Category::all();
+        return view('programs.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -28,11 +30,14 @@ class ProgramController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'years' => 'required|integer',
+            'category_id' => 'required|exists:categories,id',
+
         ]);
 
         Program::create($request->all());
 
-        return redirect()->route('programs.index');
+        return redirect()->route('categories.show', $request->category_id);
     }
 
     public function edit(Program $program)

@@ -56,6 +56,43 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+
+        // ensure that the user is an admin
+    Route::middleware('can:is-admin-or-principal')->group(function () {
+        // create category
+        Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+        Route::post('/categories', [CategoryController::class, 'store'])->name('categories.store');
+
+        // create program
+        Route::get('/programs/create', [ProgramController::class, 'create'])->name('programs.create');
+        Route::post('/programs', [ProgramController::class, 'store'])->name('programs.store');
+        Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('programs.edit');
+        Route::patch('/programs/{program}', [ProgramController::class, 'update'])->name('programs.update');
+
+        // destroy program
+        Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('programs.destroy');
+        // user destroy
+        Route::delete('/users/role/{role}/{user}', [UserController::class, 'destroySpecificUser'])->name('users.destroySpecificUser');
+        // user destroy from course
+        Route::delete('/courses/{course}/users/{user}', [CourseController::class, 'destroyUserFromCourse'])->name('courses.destroyUserFromCourse');
+    });
+
+    // ensure that the user is an administrator
+    Route::middleware('can:is-administrator')->group(function () {
+        // categories
+        Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+        // show category
+        Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+        // users
+        Route::get('/users', [ProfileController::class, 'index'])->name('users.index');
+        // user showByRoles
+        Route::get('/users/role', [UserController::class, 'showByUserRoles'])->name('users.showByRoles');
+        // user showByRole
+        Route::get('/users/role/{role}', [UserController::class, 'showByRole'])->name('users.showByRole');
+        Route::get('/programs/{program}/courses/{course}/lessons/{lessonId}/attendance', [AttendanceController::class, 'showAttendanceForm'])->name('courses.lessons.attendance.form');
+        Route::post('/programs/{program}/courses/{course}/lessons/{lessonId}/attendance', [AttendanceController::class, 'submitAttendance'])->name('attendance.submit');
+
+    });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -63,11 +100,8 @@ Route::middleware('auth')->group(function () {
     // show specific user
     Route::get('/users/role/{role}/{user}', [UserController::class, 'showSpecificUser'])->name('users.showSpecificUser');
 
-
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::get('/community', [PostController::class, 'index'])->name('posts.index');
-
-
 
     // likes
     Route::post('/like/comment/{comment}', [LikeController::class, 'likeComment'])->name('like.comment');
@@ -127,46 +161,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/programs/user/{user_id}', [ProgramController::class, 'showByUser'])->name('programs.showByUser');
     // program showYear
     Route::get('/programs/{program}/year/{year}', [ProgramController::class, 'showYear'])->name('programs.showYear');
-
-    // ensure that the user is an admin
-    Route::middleware('can:is-admin-or-principal')->group(function () {
-        // create category
-        Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
-
-        // create program
-        Route::get('/programs/create', [ProgramController::class, 'create'])->name('programs.create');
-        Route::post('/programs', [ProgramController::class, 'store'])->name('programs.store');
-        Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('programs.edit');
-        Route::patch('/programs/{program}', [ProgramController::class, 'update'])->name('programs.update');
-
-        // destroy program
-        Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('programs.destroy');
-        // user destroy
-        Route::delete('/users/role/{role}/{user}', [UserController::class, 'destroySpecificUser'])->name('users.destroySpecificUser');
-        // user destroy from course
-        Route::delete('/courses/{course}/users/{user}', [CourseController::class, 'destroyUserFromCourse'])->name('courses.destroyUserFromCourse');
-    });
-
-    // ensure that the user is an administrator
-    Route::middleware('can:is-administrator')->group(function () {
-        // categories
-        Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-        // show category
-        Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
-        // users
-        Route::get('/users', [ProfileController::class, 'index'])->name('users.index');
-        // user showByRoles
-        Route::get('/users/role', [UserController::class, 'showByUserRoles'])->name('users.showByRoles');
-        // user showByRole
-        Route::get('/users/role/{role}', [UserController::class, 'showByRole'])->name('users.showByRole');
-        Route::get('/programs/{program}/courses/{course}/lessons/{lessonId}/attendance', [AttendanceController::class, 'showAttendanceForm'])->name('courses.lessons.attendance.form');
-        Route::post('/programs/{program}/courses/{course}/lessons/{lessonId}/attendance', [AttendanceController::class, 'submitAttendance'])->name('attendance.submit');
-
-    });
-
-
-
-
 
     // comments
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
