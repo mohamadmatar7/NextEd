@@ -46,7 +46,7 @@
                                 <span>{{ $abbreviatedName }}</span>@if(!$loop->last), @endif
                             @endforeach
                         </td>
-                        <td class="px-6 py-4 text-sm font-medium">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <a href="{{ route('users.showSpecificUser', ['role' => $role, 'user' => $user->id]) }}"
                             class="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-500">{{ __('View') }}</a>
                             @can('is-admin-or-principal')
@@ -54,11 +54,11 @@
 
                             <button class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-500 ml-4" x-data="" x-on:click="$dispatch('open-modal', 'delete-form-user-{{ $user->id }}')">{{ __('Delete') }}</button>
                             <x-modal focusable class="p-6" name="delete-form-user-{{ $user->id }}" :show="''">
-                                <form method="post" action="{{ route('users.destroySpecificUser', ['role' => $role, 'user' => $user->id]) }}" class="p-6">
+                                <form method="post" action="{{ route('users.destroySpecificUser', ['role' => $role, 'user' => $user->id]) }}" class="p-6 whitespace-normal">
                                     @csrf
                                     @method('delete')
                                     <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                        {{ __('template.Are you sure you want to delete') }} {{ $user->name }}?
+                                        {{ __('template.Are you sure you want to delete') }} <span class="font-bold underline">{{ $user->name }}</span>?
                                     </h2>
                                     <p class="my-2 text-sm text-gray-600 dark:text-gray-400">
                                         {{ __('template.Once this user is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete this user.') }}

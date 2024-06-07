@@ -135,6 +135,8 @@ Route::middleware('auth')->group(function () {
     Route::middleware('can:is-admin-or-principal')->group(function () {
         // user destroy
         Route::delete('/users/role/{role}/{user}', [UserController::class, 'destroySpecificUser'])->name('users.destroySpecificUser');
+        // user destroy from course
+        Route::delete('/courses/{course}/users/{user}', [CourseController::class, 'destroyUserFromCourse'])->name('courses.destroyUserFromCourse');
     });
 
     // ensure that the user is an administrator

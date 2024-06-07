@@ -31,6 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('is-principal', fn($user) => $user->role === Role::PRINCIPAL);
         Gate::define('is-admin-or-principal', fn($user) => in_array($user->role, [Role::ADMIN, Role::PRINCIPAL]));
         Gate::define('is-instructor', fn($user) => $user->role === Role::INSTRUCTOR);
+        Gate::define('is-admin-or-principal-or-instructor', fn($user) => in_array($user->role, [Role::ADMIN, Role::PRINCIPAL, Role::INSTRUCTOR]));
         Gate::define('is-teacher', fn($user) => $user->role === Role::TEACHER);
         Gate::define('is-instructor-or-teacher', fn($user) => in_array($user->role, [Role::INSTRUCTOR, Role::TEACHER]));
         Gate::define('is-administrator', fn($user) => in_array($user->role, [Role::ADMIN, Role::PRINCIPAL, Role::INSTRUCTOR, Role::TEACHER]));

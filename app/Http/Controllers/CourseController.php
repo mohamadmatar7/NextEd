@@ -191,4 +191,10 @@ class CourseController extends Controller
         $program = $course->program;
         return view('courses.assignments.showAssignment', compact('course', 'assignment', 'program'));
     }
+
+    public function destroyUserFromCourse(Course $course, $user_id)
+    {
+        $course->users()->detach($user_id);
+        return redirect()->back();
+    }
 }
