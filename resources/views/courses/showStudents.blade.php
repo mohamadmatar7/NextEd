@@ -29,7 +29,7 @@
                                         {{ __('template.Are you sure you want to delete') }} <span class="font-bold underline">{{ $user->name }}</span>?
                                     </h2>
                                     <p class="my-2 text-sm text-gray-600 dark:text-gray-400">
-                                        {{ __('template.Once this user is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete this user.') }}
+                                        {{ __('template.Once this user is deleted, all of its resources and data will be permanently deleted.') }}
                                     </p>
                                     <div class="mt-6 flex justify-end">
                                         <x-secondary-button x-on:click="$dispatch('close')">

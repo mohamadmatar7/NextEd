@@ -75,6 +75,7 @@ Route::middleware('auth')->group(function () {
 
     // announcements+
     Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
+    Route::get('/announcements/program', [AnnouncementController::class, 'showAnnouncementsByUserProgram'])->name('announcements.showByUserProgram');
     Route::post('/announcements', [AnnouncementController::class, 'store'])->name('announcements.store');
     Route::delete('/announcements/{announcement}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
     Route::patch('/announcements/{announcement}', [AnnouncementController::class, 'update'])->name('announcements.update');

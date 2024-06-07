@@ -1,9 +1,9 @@
 
-<div class="flex flex-col z-10 absolute right-0">
+<div class="flex flex-col z-10 absolute right-0 top-0">
 
 <!-- Dropdown button -->
 <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
-    class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+    class="inline-flex justify-end items-center p-2 text-sm font-medium text-center text-gray-500 dark:text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
     type="button">
     <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
         <path

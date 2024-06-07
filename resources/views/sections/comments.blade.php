@@ -1,5 +1,5 @@
 @props(['post', 'itemType', 'Id'])
-<section class="bg-white dark:bg-gray-900 py-4 my-4 lg:py-6 antialiased hidden"  id="reply_{{ $itemType }}_{{ $post->id }}">
+<section class="bg-white dark:bg-gray-900 pt-4 my-4 antialiased hidden"  id="reply_{{ $itemType }}_{{ $post->id }}">
     <div class="mr-auto px-4">
         @auth
         <form class="mb-3" action="{{ route('comments.store') }}" method="POST" enctype="multipart/form-data">
@@ -33,6 +33,7 @@
                     :itemType="'comment'"
                     :route="route('like.comment', $comment->id)"
                     :likesCount="$comment->likes->count()"
+                    :class="'py-1 px-4'"
                     :hidden=true
                     :Id="$comment->id"
                     userId="{{ $comment->user_id }}" 

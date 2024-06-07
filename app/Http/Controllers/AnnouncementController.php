@@ -9,12 +9,21 @@ class AnnouncementController extends Controller
 {
     public function index()
     {
-        // paginate the announcements
         $announcements = Announcement::with('media', 'user', 'likes', 'program', 'course')
             ->latest()
-            ->paginate(10);
+            ->paginate(9);
+        
         return view('announcements.index', compact('announcements'));
     }
+
+    public function showAnnouncementsByUserProgram()
+    {
+        $programIds = auth()->user()->courses->pluck('program_id');
+        $announcementsPrograms = Announcement::whereIn('program_id', $programIds)->paginate(9);
+    
+        return view('announcements.showByUserProgram', compact('announcementsPrograms'));
+    }
+    
 
     public function show(Announcement $announcement)
     {
@@ -25,6 +34,7 @@ class AnnouncementController extends Controller
             ->get();
         return view('announcements.show', compact('announcement', 'relatedAnnouncements'));
     }
+    
 
     public function create()
     {
@@ -113,9 +123,4 @@ class AnnouncementController extends Controller
         return redirect()->route('announcements.index');
     }
 
-
-    // show announcemnts of courses and get the program also in the param
-    
-
-    
 }

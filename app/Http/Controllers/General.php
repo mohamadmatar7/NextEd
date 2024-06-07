@@ -20,10 +20,10 @@ class General extends Controller
             ->limit(7)
             ->get();
 
-        // get announcements for of program that the user is enrolled in and limit it to 10
+        // get announcements for of program that the user is enrolled in
         $announcementsPrograms = auth()->user()->courses->map(function ($course) {
             return $course->program->announcements;
-        })->flatten();
+        })->flatten()->take(5)->sortByDesc('created_at');
 
         return view('welcome', compact('posts', 'announcements', 'announcementsPrograms'));
 

@@ -8,6 +8,7 @@
         :tableHeaders="[
             __('template.Name'),
             __('template.Email'),
+            __('template.Role'),
             __('template.Actions')
         ]">
 
@@ -16,6 +17,10 @@
                 <tr class="search-row">
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300 user-name">{{ $user->name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 user-email">{{ $user->email }}</td>
+                    @php
+                        $roleString = \App\Enums\Role::getDescription($user->role);
+                    @endphp
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $roleString }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <a href="" class="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-500">{{ __('View') }}</a>
                         @can('is-admin-or-principal')
@@ -29,7 +34,7 @@
                                         {{ __('template.Are you sure you want to delete') }} <span class="font-bold underline">{{ $user->name }}</span>?
                                     </h2>
                                     <p class="my-2 text-sm text-gray-600 dark:text-gray-400">
-                                        {{ __('template.Once this user is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete this user.') }}
+                                        {{ __('template.Once this user is deleted, all of its resources and data will be permanently deleted.') }}
                                     </p>
                                     <div class="mt-6 flex justify-end">
                                         <x-secondary-button x-on:click="$dispatch('close')">
