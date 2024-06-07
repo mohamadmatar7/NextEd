@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
@@ -84,56 +85,62 @@ Route::middleware('auth')->group(function () {
 
 
     // courses
-    Route::get('/courses', [App\Http\Controllers\CourseController::class, 'index'])->name('courses.index');
-    Route::get('/courses/create', [App\Http\Controllers\CourseController::class, 'create'])->name('courses.create');
-    Route::post('/courses', [App\Http\Controllers\CourseController::class, 'store'])->name('courses.store');
-    Route::get('/programs/{program}/courses/{course}', [App\Http\Controllers\CourseController::class, 'show'])->name('courses.show');
-    Route::get('/courses/{course}/edit', [App\Http\Controllers\CourseController::class, 'edit'])->name('courses.edit');
-    Route::patch('/courses/{course}', [App\Http\Controllers\CourseController::class, 'update'])->name('courses.update');
-    Route::delete('/courses/{course}', [App\Http\Controllers\CourseController::class, 'destroy'])->name('courses.destroy');
+    Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+    Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
+    Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
+    Route::get('/programs/{program}/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
+    Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+    Route::patch('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
+    Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
     // course showByUser
-    Route::get('/courses/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showByUser'])->name('courses.showByUser');
+    Route::get('/courses/user/{user_id}', [CourseController::class, 'showByUser'])->name('courses.showByUser');
     // course showByProgram
-    Route::get('/courses/program/{program_id}/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showByProgram'])->name('courses.showByProgram');  
+    Route::get('/courses/program/{program_id}/user/{user_id}', [CourseController::class, 'showByProgram'])->name('courses.showByProgram');  
     // assignments of a course
-    Route::get('/programs/{program}/courses/{course}/assignments', [App\Http\Controllers\CourseController::class, 'showAssignments'])->name('courses.assignments.showAssignments');
-    Route::get('/programs/{program}/courses/{course}/assignments/{assignment}', [App\Http\Controllers\CourseController::class, 'showAssignment'])->name('courses.assignments.showAssignment');
+    Route::get('/programs/{program}/courses/{course}/assignments', [CourseController::class, 'showAssignments'])->name('courses.assignments.showAssignments');
+    Route::get('/programs/{program}/courses/{course}/assignments/{assignment}', [CourseController::class, 'showAssignment'])->name('courses.assignments.showAssignment');
     // Assignments of user 
-    Route::get('/programs/{program}/courses/{course}/assignments/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showAssignmentsByUser'])->name('courses.assignments.showAssignmentsByUser');
-    Route::get('/programs/{program}/courses/{course}/assignments/{assignment}/user/{user_id}', [App\Http\Controllers\CourseController::class, 'showAssignmentByUser'])->name('courses.assignments.showAssignmentByUser');
+    Route::get('/programs/{program}/courses/{course}/assignments/user/{user_id}', [CourseController::class, 'showAssignmentsByUser'])->name('courses.assignments.showAssignmentsByUser');
+    Route::get('/programs/{program}/courses/{course}/assignments/{assignment}/user/{user_id}', [CourseController::class, 'showAssignmentByUser'])->name('courses.assignments.showAssignmentByUser');
     // announcements of a course
-    Route::get('/programs/{program}/courses/{course}/announcements', [App\Http\Controllers\CourseController::class, 'showAnnouncements'])->name('courses.announcements.showAnnouncements');
-    Route::get('/programs/{program}/courses/{course}/announcements/{announcement}', [App\Http\Controllers\CourseController::class, 'showAnnouncement'])->name('courses.announcements.showAnnouncement');
+    Route::get('/programs/{program}/courses/{course}/announcements', [CourseController::class, 'showAnnouncements'])->name('courses.announcements.showAnnouncements');
+    Route::get('/programs/{program}/courses/{course}/announcements/{announcement}', [CourseController::class, 'showAnnouncement'])->name('courses.announcements.showAnnouncement');
     // users of a course
-    Route::get('/courses/{course}/users', [App\Http\Controllers\CourseController::class, 'showUsers'])->name('courses.showUsers');
+    Route::get('/courses/{course}/users', [CourseController::class, 'showUsers'])->name('courses.showUsers');
     // lessons of a course
-    Route::get('/programs/{program}/courses/{course}/lessons', [App\Http\Controllers\CourseController::class, 'showLessons'])->name('courses.lessons.showLessons');
-    Route::get('/programs/{program}/courses/{course}/lessons/{lesson}', [App\Http\Controllers\LessonController::class, 'show'])->name('courses.lessons.showLesson');
+    Route::get('/programs/{program}/courses/{course}/lessons', [CourseController::class, 'showLessons'])->name('courses.lessons.showLessons');
+    Route::get('/programs/{program}/courses/{course}/lessons/{lesson}', [LessonController::class, 'show'])->name('courses.lessons.showLesson');
     // assignments of a course
-    Route::get('/courses/{course}/assignments', [App\Http\Controllers\CourseController::class, 'showAssignments'])->name('courses.showAssignments');
-    Route::get('/courses/{course}/assignments/{assignment}', [App\Http\Controllers\CourseController::class, 'showAssignment'])->name('courses.showAssignment');
+    Route::get('/courses/{course}/assignments', [CourseController::class, 'showAssignments'])->name('courses.showAssignments');
+    Route::get('/courses/{course}/assignments/{assignment}', [CourseController::class, 'showAssignment'])->name('courses.showAssignment');
     // users of a course
-    Route::get('/courses/{course}/users', [App\Http\Controllers\CourseController::class, 'showUsers'])->name('courses.showUsers');
+    Route::get('/courses/{course}/users', [CourseController::class, 'showUsers'])->name('courses.showUsers');
     // administrators of a course
-    Route::get('/programs/{program}/courses/{course}/administrators', [App\Http\Controllers\CourseController::class, 'showAdministrators'])->name('courses.showAdministrators');
+    Route::get('/programs/{program}/courses/{course}/administrators', [CourseController::class, 'showAdministrators'])->name('courses.showAdministrators');
     // students of a course
-    Route::get('/programs/{program}/courses/{course}/students', [App\Http\Controllers\CourseController::class, 'showStudents'])->name('courses.showStudents');
+    Route::get('/programs/{program}/courses/{course}/students', [CourseController::class, 'showStudents'])->name('courses.showStudents');
 
     // programs
-    Route::get('/programs', [App\Http\Controllers\ProgramController::class, 'index'])->name('programs.index');
-    Route::get('/programs/create', [App\Http\Controllers\ProgramController::class, 'create'])->name('programs.create');
-    Route::post('/programs', [App\Http\Controllers\ProgramController::class, 'store'])->name('programs.store');
-    Route::get('/programs/{program}', [App\Http\Controllers\ProgramController::class, 'show'])->name('programs.show');
-    Route::get('/programs/{program}/edit', [App\Http\Controllers\ProgramController::class, 'edit'])->name('programs.edit');
-    Route::patch('/programs/{program}', [App\Http\Controllers\ProgramController::class, 'update'])->name('programs.update');
-    Route::delete('/programs/{program}', [App\Http\Controllers\ProgramController::class, 'destroy'])->name('programs.destroy');
+    Route::get('/programs', [ProgramController::class, 'index'])->name('programs.index');
+    Route::get('/programs/{program}', [ProgramController::class, 'show'])->name('programs.show');
     // program showByUser
-    Route::get('/programs/user/{user_id}', [App\Http\Controllers\ProgramController::class, 'showByUser'])->name('programs.showByUser');
+    Route::get('/programs/user/{user_id}', [ProgramController::class, 'showByUser'])->name('programs.showByUser');
     // program showYear
-    Route::get('/programs/{program}/year/{year}', [App\Http\Controllers\ProgramController::class, 'showYear'])->name('programs.showYear');
+    Route::get('/programs/{program}/year/{year}', [ProgramController::class, 'showYear'])->name('programs.showYear');
 
     // ensure that the user is an admin
     Route::middleware('can:is-admin-or-principal')->group(function () {
+        // create category
+        Route::get('/categories/create', [CategoryController::class, 'create'])->name('categories.create');
+
+        // create program
+        Route::get('/programs/create', [ProgramController::class, 'create'])->name('programs.create');
+        Route::post('/programs', [ProgramController::class, 'store'])->name('programs.store');
+        Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('programs.edit');
+        Route::patch('/programs/{program}', [ProgramController::class, 'update'])->name('programs.update');
+
+        // destroy program
+        Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('programs.destroy');
         // user destroy
         Route::delete('/users/role/{role}/{user}', [UserController::class, 'destroySpecificUser'])->name('users.destroySpecificUser');
         // user destroy from course
@@ -143,17 +150,18 @@ Route::middleware('auth')->group(function () {
     // ensure that the user is an administrator
     Route::middleware('can:is-administrator')->group(function () {
         // categories
-        Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');
+        Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
         // show category
-        Route::get('/categories/{category}', [App\Http\Controllers\CategoryController::class, 'show'])->name('categories.show');
+        Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
         // users
-        Route::get('/users', [App\Http\Controllers\ProfileController::class, 'index'])->name('users.index');
+        Route::get('/users', [ProfileController::class, 'index'])->name('users.index');
         // user showByRoles
-        Route::get('/users/role', [App\Http\Controllers\UserController::class, 'showByUserRoles'])->name('users.showByRoles');
+        Route::get('/users/role', [UserController::class, 'showByUserRoles'])->name('users.showByRoles');
         // user showByRole
-        Route::get('/users/role/{role}', [App\Http\Controllers\UserController::class, 'showByRole'])->name('users.showByRole');
+        Route::get('/users/role/{role}', [UserController::class, 'showByRole'])->name('users.showByRole');
         Route::get('/programs/{program}/courses/{course}/lessons/{lessonId}/attendance', [AttendanceController::class, 'showAttendanceForm'])->name('courses.lessons.attendance.form');
         Route::post('/programs/{program}/courses/{course}/lessons/{lessonId}/attendance', [AttendanceController::class, 'submitAttendance'])->name('attendance.submit');
+
     });
 
 

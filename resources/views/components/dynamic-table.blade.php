@@ -15,9 +15,11 @@
                         </svg>
                     </div>
                 </div>
-                <a href="{{ $createRoute }}" class="md:text-sm lg:text-base text-white font-bold p-2 sm:py-2 sm:px-4 rounded bg-gradient-to-r from-blue-500 to-blue-700 dark:from-gray-700 dark:to-gray-900 hover:from-blue-700 hover:to-blue-900">
-                    {{ $routeText }}
-                </a>
+                @can('is-admin-or-principal')
+                    <a href="{{ $createRoute }}" class="md:text-sm lg:text-base text-white font-bold p-2 sm:py-2 sm:px-4 rounded bg-gradient-to-r from-blue-500 to-blue-700 dark:from-gray-700 dark:to-gray-900 hover:from-blue-700 hover:to-blue-900">
+                        {{ $routeText }}
+                    </a>
+                @endcan
             </div>
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">

@@ -11,7 +11,7 @@
                     </div>
                     @if (!@$loadMore)
                     <div class="flex">
-                        <a href="{{ route('posts.index') }}" class="font-semibold dark:text-white px-4 pt-2 pb-4 lg:py-2 text-gray-600 hover:underline dark:hover:text-gray-300 hover:text-gray-500">
+                        <a href="{{ route('posts.index') }}" class="font-semibold dark:text-white px-1 lg:px-4 pt-2 pb-4 lg:py-2 text-gray-600 hover:underline dark:hover:text-gray-300 hover:text-gray-500">
                             {{ __('template.View all posts') }}
                         </a>
                     </div>

@@ -77,8 +77,12 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        // return redirect(RouteServiceProvider::HOME);
+        $roleMap = config('roles');
+        $role = $roleMap[$user->role];
+
+        return redirect()->route('users.showByRole',  ['role' => $role]);
     }
 }

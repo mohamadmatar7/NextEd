@@ -4,8 +4,8 @@
 
     <x-dynamic-table
                     title="{{ __('template.Programs in') }} {{ $category->name }}"
-                    routeText="{{ __('template.Create') }} {{ __('template.Program') }}"
-                    createRoute="' '"
+                    routeText="{{ __('template.Program') }} {{ __('template.Create') }}"
+                    createRoute="{{ route('programs.create') }}"
                     :tableHeaders="[
                         __('template.Name'),
                         __('template.Years'),

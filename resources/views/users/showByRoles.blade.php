@@ -1,7 +1,10 @@
 @section('title', __('template.Roles'))
 
 <x-app-layout>
-    <x-group-cards title="{{ __('User Roles') }}">
+    <x-group-cards title="{{ __('User Roles') }}"
+                    routeCreate="{{ route('register') }}"
+                    routeTitle="{{ __('template.User') }} {{ __('template.Register') }}"
+                    >
         @foreach($roles as $role)
             <x-group-card :route="route('users.showByRole', ['role' => $role['name']])"
                           :title="$role['name']"

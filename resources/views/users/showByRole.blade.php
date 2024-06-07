@@ -4,8 +4,8 @@
 <x-app-layout>
     <x-dynamic-table 
             title="{{ __('template.Users with role') }} {{ $role }}"
-            routeText="{{ __('template.Create') }} {{ $role }}"
-            createRoute="' '"
+            routeText="{{ $role }} {{ __('template.Register') }}"
+            createRoute="{{ route('register') }}"
             :tableHeaders="[
                 __('template.Name'),
                 __('template.Email'),
