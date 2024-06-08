@@ -3,7 +3,7 @@
 <x-app-layout>
     <x-dynamic-table 
         title="{{ __('template.Administrators in') }} {{ @$course->name }}"
-        routeText="{{ __('template.Create') }} {{ __('template.Administrator') }}"
+        routeText="{{ __('template.Administrator') }} {{ __('template.Add') }}"
         createRoute="{{ '' }}"
         :tableHeaders="[
             __('template.Name'),

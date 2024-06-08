@@ -43,7 +43,7 @@
 
             <div class="mt-4">
                 <x-input-label for="description" :value="__('template.Description')" />
-                <x-textarea id="description" class="block mt-1 w-full" name="description" :value="old('description')"
+                <x-textarea id="description" class="w-full" name="description" :value="old('description')"
                     :label="__('template.Description')" :placeholder="__('template.Description')" required />
             </div>
 

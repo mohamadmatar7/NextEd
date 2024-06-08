@@ -61,7 +61,7 @@ class ProgramController extends Controller
     {
         $program->delete();
 
-        return redirect()->route('programs.index');
+        return redirect()->back();
     }
 
 
