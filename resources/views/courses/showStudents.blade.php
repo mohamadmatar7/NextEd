@@ -1,10 +1,13 @@
 @section('title', __('template.Students') . ' - ' . @$course->name)
 
 <x-app-layout>
+
     <x-dynamic-table 
         title="{{ __('template.Students in') }} {{ @$course->name }}"
         routeText="{{ __('template.Student') }} {{ __('template.Add') }}"
         createRoute="{{ '' }}"
+        addRoute="{{ route('courses.storeStudentsToCourse', ['course' => $course->id]) }}"
+        courseId="{{ $course->id }}"
         :tableHeaders="[
             __('template.Name'),
             __('template.Email'),
@@ -20,7 +23,7 @@
                         <a href="" class="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-500">{{ __('View') }}</a>
                         @can('is-admin-or-principal')
                         <a href="" class="text-yellow-600 dark:text-yellow-400 hover:text-yellow-900 dark:hover:text-yellow-500 ml-4">{{ __('Edit') }}</a>
-                        <button class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-500 ml-4" x-data="" x-on:click="$dispatch('open-modal', 'delete-form-user-{{ $user->id }}')">{{ __('Delete') }}</button>
+                        <button class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-500 ml-4" title="{{ __('template.Delete from the course') }}" x-data="" x-on:click="$dispatch('open-modal', 'delete-form-user-{{ $user->id }}')">{{ __('template.Delete') }}</button>
                             <x-modal focusable class="p-6" name="delete-form-user-{{ $user->id }}" :show="''">
                                 <form method="post" action="{{ route('courses.destroyUserFromCourse', ['course' => @$course->id, 'user' => $user->id]) }}" class="p-6 whitespace-normal">
                                     @csrf

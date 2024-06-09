@@ -75,6 +75,12 @@ Route::middleware('auth')->group(function () {
         Route::delete('/users/role/{role}/{user}', [UserController::class, 'destroySpecificUser'])->name('users.destroySpecificUser');
         // user destroy from course
         Route::delete('/courses/{course}/users/{user}', [CourseController::class, 'destroyUserFromCourse'])->name('courses.destroyUserFromCourse');
+        // getStudentsToAddToCourse
+        Route::get('/programs/{program}/courses/{course}/students', [CourseController::class, 'getStudentsToAdd'])->name('courses.getStudentsToAdd');
+        // store students in course
+        Route::post('/courses/{course}/store-students', [CourseController::class, 'storeStudentsToCourse'])->name('courses.storeStudentsToCourse');
+
+
     });
 
     // ensure that the user is an administrator

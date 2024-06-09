@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Status;
 use App\Models\Course;
 use App\Models\Assignment;
 use App\Models\Program;
 use App\Models\Announcement;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -142,12 +144,59 @@ class CourseController extends Controller
         return view('courses.showAdministrators', compact('course', 'administrators', 'program'));
     }
 
-    public function showStudents(Program $program, Course $course)
+    // public function showStudents(Program $program, Course $course)
+    // {
+    //     $program = $course->program;
+    //     $students = $course->users->where('role', 0);
+    //     $studentsToAdd = $students->pluck('id')->toArray();
+    //     $studentsToAdds = User::where('role', 0)
+    //                     ->whereNotIn('id', $studentsToAdd)
+    //                     ->get();
+        
+    //     return view('courses.showStudents', compact('course', 'students', 'program', 'studentsToAdds'));
+    // }
+
+    public function showStudents(Request $request, Program $program, Course $course)
     {
+        $search = $request->input('search');
         $program = $course->program;
         $students = $course->users->where('role', 0);
-        return view('courses.showStudents', compact('course', 'students', 'program'));
+        $studentsToAdd = $students->pluck('id')->toArray();
+
+        // Handle AJAX search request
+        if ($request->ajax()) {
+            if ($search == '') {
+                $users = User::where('role', 0)
+                            ->whereNotIn('id', $studentsToAdd)
+                            ->limit(5)
+                            ->get();
+            } else {
+                $users = User::where('role', 0)
+                            ->whereNotIn('id', $studentsToAdd)
+                            ->where('name', 'like', '%' . $search . '%')
+                            ->limit(5)
+                            ->get();
+            }
+
+            $response = [];
+            foreach ($users as $user) {
+                $response[] = [
+                    "id" => $user->id,
+                    "text" => $user->name
+                ];
+            }
+
+            return response()->json($response);
+        }
+
+        // Regular page load
+        $studentsToAdds = User::where('role', 0)
+                        ->whereNotIn('id', $studentsToAdd)
+                        ->get();
+
+        return view('courses.showStudents', compact('course', 'students', 'program', 'studentsToAdds'));
     }
+
 
     public function showAnnouncements(Program $program, Course $course)
     {
@@ -197,4 +246,23 @@ class CourseController extends Controller
         $course->users()->detach($user_id);
         return redirect()->back();
     }
+
+
+
+    public function storeStudentsToCourse(Request $request, Course $course)
+    {
+        // Validate that students is an array and contains integers
+        $validated = $request->validate([
+            'students' => 'required|array',
+            'students.*' => 'integer|exists:users,id',
+        ]);
+
+        // Attach students to the course
+        $course->users()->attach($validated['students'], ['status' => Status::enrolled, 'completed_at' => null]);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Students added to the course successfully.');
+    }
+
+
 }
