@@ -5,6 +5,10 @@
         title="{{ __('template.Administrators in') }} {{ @$course->name }}"
         routeText="{{ __('template.Administrator') }} {{ __('template.Add') }}"
         createRoute="{{ '' }}"
+        addRoute="{{ route('courses.storeAdministratorsToCourse', ['course' => $course->id]) }}"
+        courseId="{{ $course->id }}"
+        searchFor="{{ __('template.administrators') }}"
+        type="administrators"
         :tableHeaders="[
             __('template.Name'),
             __('template.Email'),
@@ -22,10 +26,10 @@
                     @endphp
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $roleString }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <a href="" class="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-500">{{ __('View') }}</a>
+                        <a href="" class="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-500">{{ __('template.View') }}</a>
                         @can('is-admin-or-principal')
-                        <a href="" class="text-yellow-600 dark:text-yellow-400 hover:text-yellow-900 dark:hover:text-yellow-500 ml-4">{{ __('Edit') }}</a>
-                        <button class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-500 ml-4" x-data="" x-on:click="$dispatch('open-modal', 'delete-form-user-{{ $user->id }}')">{{ __('Delete') }}</button>
+                        <a href="" class="text-yellow-600 dark:text-yellow-400 hover:text-yellow-900 dark:hover:text-yellow-500 ml-4">{{ __('template.Edit') }}</a>
+                        <button class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-500 ml-4" x-data="" x-on:click="$dispatch('open-modal', 'delete-form-user-{{ $user->id }}')">{{ __('template.Delete') }}</button>
                             <x-modal focusable class="p-6" name="delete-form-user-{{ $user->id }}" :show="''">
                                 <form method="post" action="{{ route('courses.destroyUserFromCourse', ['course' => @$course->id, 'user' => $user->id]) }}" class="p-6 whitespace-normal">
                                     @csrf

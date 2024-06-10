@@ -137,24 +137,54 @@ class CourseController extends Controller
         return view('courses.showUsers', compact('course', 'users'));
     }
 
-    public function showAdministrators(Program $program, Course $course)
-    {
-        $program = $course->program;
-        $administrators = $course->users->where('role', 1 or 2 or 3 or 4);
-        return view('courses.showAdministrators', compact('course', 'administrators', 'program'));
-    }
-
-    // public function showStudents(Program $program, Course $course)
+    // public function showAdministrators(Program $program, Course $course)
     // {
     //     $program = $course->program;
-    //     $students = $course->users->where('role', 0);
-    //     $studentsToAdd = $students->pluck('id')->toArray();
-    //     $studentsToAdds = User::where('role', 0)
-    //                     ->whereNotIn('id', $studentsToAdd)
-    //                     ->get();
-        
-    //     return view('courses.showStudents', compact('course', 'students', 'program', 'studentsToAdds'));
+    //     $administrators = $course->users->where('role', 1 or 2 or 3 or 4);
+    //     return view('courses.showAdministrators', compact('course', 'administrators', 'program'));
     // }
+
+    public function showAdministrators(Request $request, Program $program, Course $course)
+    {
+        $search = $request->input('search');
+        $program = $course->program;
+        $administrators = $course->users->where('role', 1 or 2 or 3 or 4);
+        $administratorsToAdd = $administrators->pluck('id')->toArray();
+
+        // Handle AJAX search request
+        if ($request->ajax()) {
+            if ($search == '') {
+                $users = User::where('role', 1 or 2 or 3 or 4)
+                            ->whereNotIn('id', $administratorsToAdd)
+                            ->limit(5)
+                            ->get();
+            } else {
+                $users = User::where('role', 1 or 2 or 3 or 4)
+                            ->whereNotIn('id', $administratorsToAdd)
+                            ->where('name', 'like', '%' . $search . '%')
+                            ->limit(5)
+                            ->get();
+            }
+
+            $response = [];
+            foreach ($users as $user) {
+                $response[] = [
+                    "id" => $user->id,
+                    "text" => $user->name
+                ];
+            }
+
+            return response()->json($response);
+        }
+
+        // Regular page load
+        $administratorsToAdds = User::where('role', 1 or 2 or 3 or 4)
+                        ->whereNotIn('id', $administratorsToAdd)
+                        ->get();
+
+        return view('courses.showAdministrators', compact('course', 'administrators', 'program', 'administratorsToAdds'));
+    }
+
 
     public function showStudents(Request $request, Program $program, Course $course)
     {
@@ -261,8 +291,22 @@ class CourseController extends Controller
         $course->users()->attach($validated['students'], ['status' => Status::enrolled, 'completed_at' => null]);
 
         // Redirect back with a success message
-        return redirect()->back()->with('success', 'Students added to the course successfully.');
+        return redirect()->back()->with('success', __('template.Students added to the course successfully.'));
     }
 
+    public function storeAdministratorsToCourse(Request $request, Course $course)
+    {
+        // Validate that administrators is an array and contains integers
+        $validated = $request->validate([
+            'administrators' => 'required|array',
+            'administrators.*' => 'integer|exists:users,id',
+        ]);
+
+        // Attach administrators to the course
+        $course->users()->attach($validated['administrators'], ['status' => Status::enrolled, 'completed_at' => null]);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', __('template.Administrators added to the course successfully.'));
+    }
 
 }
