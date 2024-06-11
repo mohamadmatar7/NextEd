@@ -7,7 +7,8 @@
         routeText="{{ __('template.Student') }} {{ __('template.Add') }}"
         createRoute="{{ '' }}"
         addRoute="{{ route('courses.storeStudentsToCourse', ['course' => $course->id]) }}"
-        courseId="{{ $course->id }}"
+        single="course"
+        singleId="{{ $course->id }}"
         searchFor="{{ __('template.students') }}"
         type="students"
         :tableHeaders="[
@@ -21,8 +22,11 @@
                 <tr class="search-row">
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-300 user-name">{{ $user->name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 user-email">{{ $user->email }}</td>
+                        @php
+                            $roleString = \App\Enums\Role::getDescription($user->role);
+                        @endphp
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <a href="" class="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-500">{{ __('template.View') }}</a>
+                        <a href="{{ route('users.showSpecificUser', ['role' => $roleString, 'user' => $user->id]) }}" class="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-500">{{ __('template.View') }}</a>
                         @can('is-admin-or-principal')
                         <a href="" class="text-yellow-600 dark:text-yellow-400 hover:text-yellow-900 dark:hover:text-yellow-500 ml-4">{{ __('template.Edit') }}</a>
                         <button class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-500 ml-4" title="{{ __('template.Delete from the course') }}" x-data="" x-on:click="$dispatch('open-modal', 'delete-form-user-{{ $user->id }}')">{{ __('template.Delete') }}</button>

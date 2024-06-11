@@ -85,6 +85,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/courses/{course}/store-students', [CourseController::class, 'storeStudentsToCourse'])->name('courses.storeStudentsToCourse');
         // store administrators in course
         Route::post('/courses/{course}/store-administrators', [CourseController::class, 'storeAdministratorsToCourse'])->name('courses.storeAdministratorsToCourse');
+        // storeCoursesToUser
+        Route::post('/users/{user}/store-courses', [UserController::class, 'storeCoursesToUser'])->name('users.storeCoursesToUser');
 
     });
 

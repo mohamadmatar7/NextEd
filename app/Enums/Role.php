@@ -32,7 +32,7 @@ class Role
             case self::TEACHER:
                 return 'Teacher';
             case self::STUDENT:
-                return;
+                return 'Student';
             default:
                 return 'Unknown Role';
         }

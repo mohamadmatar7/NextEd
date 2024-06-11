@@ -37,7 +37,7 @@
             </div>
 
             @if(@$addRoute)
-                <x-form-add-to :searchFor="$searchFor" :courseId="$courseId" :type="$type" :addRoute="$addRoute" />
+                <x-form-add-to :searchFor="$searchFor" :type="$type" :addRoute="$addRoute" :single="$single" :singleId="$singleId" :left="true" />
             @endif
 
             @if(session('success'))
@@ -82,5 +82,4 @@
         });
     });
 </script>
-
 @endsection

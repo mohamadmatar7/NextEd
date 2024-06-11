@@ -320,4 +320,6 @@ class CourseController extends Controller
         return redirect()->back()->with('success', __('template.Administrators added to the course successfully.'));
     }
 
+
+
 }

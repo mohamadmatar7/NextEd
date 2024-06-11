@@ -1,10 +1,10 @@
 @section('title', __('template.Create') . ' ' . __('template.Course'))
 
 <x-app-layout>
-    <x-form-card title="{{ __('template.Create') . ' ' . __('template.Course') }}" action="{{ route('courses.store', ['program' => $program->id]) }}"
+    <x-form-card title="{{  __('template.Course') . ' ' . __('template.Create') }}" action="{{ route('courses.store', ['program' => $program->id]) }}"
         enctype="multipart/form-data">
         <x-slot name="footer">
-            <div class="mt-4">
+            <div class=" ">
                 <x-input-label for="name" :value="__('template.Name')" />
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
                     autofocus />

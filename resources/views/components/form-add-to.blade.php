@@ -1,4 +1,4 @@
-<form action="{{ $addRoute }}" method="post" class="mb-4 w-[50%] hidden ml-auto" id="add-form">
+<form action="{{ $addRoute }}" method="post" class="mb-4 w-[50%] hidden @if(@$left) ml-auto  @endif" id="add-form">
     @csrf
     <div class="mb-4">
         <div class="relative">
@@ -23,7 +23,7 @@
             }} {{ $searchFor }}</label>
         <ul id="selected-{{ $type }}" class="flex flex-wrap gap-2">
             <!-- Selected {{ $type }} will be displayed here -->
-            <input type="hidden" name="course" value="{{ $courseId }}">
+            <input type="hidden" name="{{ $single }}" value="{{ $singleId }}">
         </ul>
     </div>
     <div class="flex justify-end">
