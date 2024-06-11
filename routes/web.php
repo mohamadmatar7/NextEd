@@ -69,6 +69,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/programs/{program}/edit', [ProgramController::class, 'edit'])->name('programs.edit');
         Route::patch('/programs/{program}', [ProgramController::class, 'update'])->name('programs.update');
 
+        // create course
+        Route::get('/programs/{program}/courses/create', [CourseController::class, 'create'])->name('courses.create');
+        Route::post('/programs/{program}/courses', [CourseController::class, 'store'])->name('courses.store');
+
         // destroy program
         Route::delete('/programs/{program}', [ProgramController::class, 'destroy'])->name('programs.destroy');
         // user destroy
@@ -127,8 +131,8 @@ Route::middleware('auth')->group(function () {
 
     // courses
     Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
-    Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
-    Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
+    // Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
+    // Route::post('/courses', [CourseController::class, 'store'])->name('courses.store');
     Route::get('/programs/{program}/courses/{course}', [CourseController::class, 'show'])->name('courses.show');
     Route::get('/courses/{course}/edit', [CourseController::class, 'edit'])->name('courses.edit');
     Route::patch('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');

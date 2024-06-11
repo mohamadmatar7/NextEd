@@ -23,7 +23,6 @@
             }} {{ $searchFor }}</label>
         <ul id="selected-{{ $type }}" class="flex flex-wrap gap-2">
             <!-- Selected {{ $type }} will be displayed here -->
-            <input type="hidden" id="{{ $type }}" name="{{ $type }}[]">
             <input type="hidden" name="course" value="{{ $courseId }}">
         </ul>
     </div>
@@ -106,7 +105,19 @@
         }
 
         function updateHiddenInput() {
-            studentsInput.value = selectedStudents.join(',');
+            // studentsInput.value = selectedStudents.join(',');
+                    // Remove existing hidden inputs
+            const existingInputs = form.querySelectorAll('input[name="{{ $type }}[]"]');
+            existingInputs.forEach(input => input.remove());
+
+            // Add new hidden inputs
+            selectedStudents.forEach(studentId => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = '{{ $type }}[]';
+                input.value = studentId;
+                form.appendChild(input);
+            });
         }
 
         document.addEventListener('click', function (e) {

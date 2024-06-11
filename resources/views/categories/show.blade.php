@@ -23,10 +23,10 @@
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 program-lessons-count">{{ $program->courses->map(function($course) { return $course->lessons->count(); })->sum() }} {{ __('template.Lessons') }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 program-users-count">{{ $program->courses->map(function($course) { return $course->users->where('role', 0)->count(); })->sum() }} {{ __('template.Students') }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <a href="{{ route('programs.show', $program) }}" class="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-500">{{ __('View') }}</a>
+                        <a href="{{ route('programs.show', $program) }}" class="text-blue-600 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-500">{{ __('template.View') }}</a>
                         @can('is-admin-or-principal-or-instructor')
-                        <a href="{{ route('programs.edit', $program) }}" class="text-yellow-600 dark:text-yellow-400 hover:text-yellow-900 dark:hover:text-yellow-500 ml-4">{{ __('Edit') }}</a>
-                        <button class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-500 ml-4" x-data="" x-on:click="$dispatch('open-modal', 'delete-form-program-{{ $program->id }}')">{{ __('Delete') }}</button>
+                        <a href="{{ route('programs.edit', $program) }}" class="text-yellow-600 dark:text-yellow-400 hover:text-yellow-900 dark:hover:text-yellow-500 ml-4">{{ __('template.Edit') }}</a>
+                        <button class="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-500 ml-4" x-data="" x-on:click="$dispatch('open-modal', 'delete-form-program-{{ $program->id }}')">{{ __('template.Delete') }}</button>
                             <x-modal focusable class="p-6" name="delete-form-program-{{ $program->id }}" :show="''">
                                 <form method="post" action="{{ route('programs.destroy', $program) }}" class="p-6 whitespace-normal">
                                     @csrf

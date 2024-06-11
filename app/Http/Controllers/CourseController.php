@@ -64,23 +64,40 @@ class CourseController extends Controller
         return view('courses.show', compact('course', 'items', 'program'));
     }
 
-    public function create()
+    public function create(Program $program)
     {
-        return view('courses.create');
+        $program = $program;
+        $programs = Program::all();
+        return view('courses.create', compact('program', 'programs'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Program $program)
     {
         $request->validate([
             'name' => 'required',
             'description' => 'required',
             'program_id' => 'required',
+            'year' => 'required',
+            'study_year' => 'required',
+            'semester' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'image' => 'nullable',
         ]);
 
-        Course::create($request->all());
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images/courses', 'public');
+            $imageUrl = asset('assets/' . $imagePath);
+        } else {
+            $imageUrl = asset('assets/images/courses/course.svg');
+        }
+        $data = $request->all();
+        $data['image'] = $imageUrl;
 
-        return redirect()->route('courses.index');
+        $program->courses()->create($data);   
+        return redirect()->route('programs.show', $program);
     }
+
 
     public function edit(Course $course)
     {
@@ -137,12 +154,6 @@ class CourseController extends Controller
         return view('courses.showUsers', compact('course', 'users'));
     }
 
-    // public function showAdministrators(Program $program, Course $course)
-    // {
-    //     $program = $course->program;
-    //     $administrators = $course->users->where('role', 1 or 2 or 3 or 4);
-    //     return view('courses.showAdministrators', compact('course', 'administrators', 'program'));
-    // }
 
     public function showAdministrators(Request $request, Program $program, Course $course)
     {

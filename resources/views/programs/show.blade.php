@@ -1,7 +1,10 @@
 @section('title', __('template.Programs') . ' - ' . $program->name)
 
 <x-app-layout>
-    <x-group-cards title="{{ __('template.Years in') . ' ' . __('template.Program') . ' - ' . $program->name }}">
+    <x-group-cards title="{{ __('template.Years in') . ' ' . __('template.Program') . ' - ' . $program->name }}"
+        routeCreate="{{ route('courses.create', ['program' => $program->id]) }}"
+        routeTitle="{{ __('template.Course') }} {{ __('template.Create') }}"
+    >
         @for ($year = 1; $year <= $program->years; $year++)
             <x-group-card :route="route('programs.showYear', ['program' => $program->id, 'year' => $year])"
                         :title="__('template.Year')"

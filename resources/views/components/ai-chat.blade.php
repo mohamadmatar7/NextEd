@@ -1,4 +1,4 @@
-<div id="chat-widget" class="fixed bottom-4 right-4 z-50 rounded-lg pt-1.5 bg-gradient-to-r from-blue-500 to-blue-700 dark:from-gray-700 dark:to-gray-900 hover:from-blue-700 hover:to-blue-900 focus:outline-none focus:shadow-outline flex items-center">
+<div id="chat-widget" class="fixed bottom-4 right-4 z-50 rounded-lg pt-1.5 bg-gradient-to-r from-blue-500 to-blue-700 dark:from-gray-700 dark:to-gray-900 hover:from-blue-700 hover:to-blue-900 focus:outline-none focus:shadow-outline flex items-center" title="{{ __('template.Chat with AI') }}">
     <img src="/assets/images/ai/robot.png"
     alt="AI Robot" class="chat-icon w-16 h-16 rounded-full cursor-pointer" id="chat-icon">
     <div id="chat-content" class="hidden absolute bottom-20 right-0 w-72 h-80 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-4 flex-col">

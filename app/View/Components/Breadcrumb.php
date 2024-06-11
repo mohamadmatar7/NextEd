@@ -22,10 +22,21 @@ class Breadcrumb extends Component
         $breadcrumbs = [];
         $path = '';
 
+        $isSpecialUrl = count($segments) >= 4 
+            && $segments[0] == 'programs' 
+            && is_numeric($segments[1]) 
+            && $segments[2] == 'courses' 
+            && $segments[3] == 'create';
+
         foreach ($segments as $index => $segment) {
             if ($segment == 'year') {
                 // Skip adding 'year' to the breadcrumb but process the next segment as a year
                 $path .= '/' . $segment;
+                continue;
+            }
+
+            if ($isSpecialUrl && $segment == 'courses') {
+                // Skip the 'courses' segment only for the special URL
                 continue;
             }
 
@@ -38,27 +49,30 @@ class Breadcrumb extends Component
                 $segmentName = ucfirst(str_replace('-', ' ', $segment));
             }
 
+            // if ($segmentName === 'Courses') {
+            //     $breadcrumbs[] = [
+            //         'name' => $segmentName,
+            //         'url' => route('courses.showByUser', auth()->id()),
+            //     ];
             if ($segmentName === 'Courses') {
+                if ($breadcrumbs && $breadcrumbs[count($breadcrumbs) - 2]['name'] === 'Programs') {
+                    continue; // Skip adding 'Courses' after 'Programs'
+                }
                 $breadcrumbs[] = [
                     'name' => $segmentName,
                     'url' => route('courses.showByUser', auth()->id()),
                 ];
-                
             } elseif ($segmentName === 'Programs') {
                 $breadcrumbs[] = [
                     'name' => $segmentName,
                     'url' => route('programs.showByUser', auth()->id()),
                 ];
-            }
-
-            elseif ($segmentName === 'Assignments') {
+            } elseif ($segmentName === 'Assignments') {
                 $breadcrumbs[] = [
                     'name' => $segmentName,
-                    'url' => route('courses.assignments.showAssignmentsByUser', ['program' => $segments[$index - 1], 'course' => $segments[$index + 1], auth()->id()]),
+                    'url' => route('courses.assignments.showAssignmentsByUser', ['program' => $segments[$index - 1], 'course' => $segments[$index + 1], auth()->id()])
                 ];
-            }
-            
-            elseif ($segmentName !== 'User' && $segmentName !== 'Users') {
+            } elseif ($segmentName !== 'User' && $segmentName !== 'Users') {
                 $breadcrumbs[] = [
                     'name' => $segmentName['full'] ?? $segmentName, // Use the full name if available
                     'url' => url($path),
@@ -74,7 +88,14 @@ class Breadcrumb extends Component
         // Determine context based on the previous segment
         if (isset($segments[$index - 1])) {
             $previousSegment = $segments[$index - 1];
-    
+
+            if ($previousSegment === 'year' && is_numeric($segment)) {
+                // Handle 'year' segment followed by a number as a year
+                $yearNumber = intval($segment);
+                $yearName = $this->getYearName($yearNumber);
+                return $yearName;
+            }
+
             switch ($previousSegment) {
                 case 'categories':
                     return DB::table('categories')->where('id', $segment)->value('name') ?? 'Category ' . $segment;
@@ -107,10 +128,10 @@ class Breadcrumb extends Component
                     return $segment; // Return the segment as it is
             }
         }
-    
+
         return $segment; // Return the segment as it is
     }
-    
+
     private function abbreviateName($name)
     {
         $words = explode(' ', $name);
@@ -121,7 +142,18 @@ class Breadcrumb extends Component
         return $abbreviatedName;
     }
     
-    
+    private function getYearName($yearNumber)
+    {
+        $yearNames = [
+            'First Year',
+            'Second Year',
+            'Third Year',
+            'Fourth Year',
+            'Fifth Year',
+        ];
+
+        return $yearNames[$yearNumber - 1] ?? 'Year ' . $yearNumber;
+    }
 
     public function render(): View|Closure|string
     {
