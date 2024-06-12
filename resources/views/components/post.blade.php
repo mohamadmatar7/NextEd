@@ -2,7 +2,7 @@
     <!--Post-->
     <article class="@if($post->user->role == 1 || $post->user->role == 2 || $post->user->role == 3 || $post->user->role == 4) border-l-8 border-blue-500 @endif">
         <div class="flex p-4 pb-0 my-2">
-            <a class="block" href="">
+            <a class="block" href="{{ route('users.showSpecificUser', ['role' => \App\Enums\Role::getDescription($post->user->role), 'user' => $post->user->id]) }}">
                 <div class="flex items-center">
                     <div>
                         <img class="inline-block h-10 w-10 rounded-full"

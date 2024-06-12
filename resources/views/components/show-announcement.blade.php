@@ -15,9 +15,11 @@
                             <p class="mt-6 text-lg text-gray-700">{{ __('template.By') }} <a href="{{ route('users.showSpecificUser', ['role' => $roleString, 'user' => $announcement->user->id]) }}"
                             class="font-semibold">{{
                                     $announcement->user->name }}</a></p>
-
-                            <img class="sm:h-[34rem] mt-10 w-full object-cover" src="{{ $announcement->image }}"
-                                alt="Featured Image" />
+                            @if($announcement->hasMedia('announcement-images'))
+                                <img src="{{ $announcement->getFirstMediaUrl('announcement-images') }}" alt="{{ $announcement->title }}" class="sm:h-[34rem] mt-10 w-full object-cover">
+                            @else
+                                <img src="{{ asset('assets/images/announcements/default.png') }}" alt="{{ $announcement->title }}" class="sm:h-[34rem] mt-10 w-full object-cover">
+                            @endif
                         </header>
 
                         <div
@@ -39,7 +41,11 @@
                         <article class="w-full mx-auto my-4 flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white text-gray-900 transition hover:translate-y-2 hover:shadow-lg">
                             <a href="{{ $relatedLink }}"
                                 class="flex flex-col h-full">
-                                <img src="{{ $article->image }}" class="h-56 w-full object-cover" alt="{{ $article->title }}" />
+                                @if($article->hasMedia('announcement-images'))
+                                    <img src="{{ $article->getFirstMediaUrl('announcement-images') }}" class="h-56 w-full object-cover" alt="{{ $article->title }}" />
+                                @else
+                                    <img src="{{ asset('assets/images/announcements/default.png') }}" class="h-56 w-full object-cover" alt="{{ $article->title }}" />
+                                @endif
                                 <div class="flex-auto px-6 py-5">
                                     <span class="mb-2 flex items-center text-sm font-semibold">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

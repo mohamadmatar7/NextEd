@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Announcement;
+use App\Models\Course;
+use App\Models\Program;
 use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
@@ -38,42 +40,78 @@ class AnnouncementController extends Controller
 
     public function create()
     {
-        return view('announcements.create');
+        $programs = Program::all();
+        $courses = Course::all();
+        return view('announcements.create', compact('programs', 'courses'));
     }
+
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'title' => 'required',
+    //         'body' => 'required',
+    //         'image' => 'nullable|image|max:4096',
+    //         'program_id' => 'nullable|exists:programs,id',
+    //         'course_id' => 'nullable|exists:courses,id',
+    //     ]);
+
+    //     if ($request->hasFile('image')) {
+    //         $announcement = Announcement::create([
+    //             'title' => $request->title,
+    //             'body' => $request->body,
+    //             'program_id' => $request->program_id,
+    //             'course_id' => $request->course_id,
+    //             'user_id' => auth()->id(),
+    //         ]);
+
+    //         $announcement->addMediaFromRequest('image')->toMediaCollection('announcement-images');
+    //         return redirect()->route('announcements.show', Announcement::latest()->first());
+    //     }
+
+    //     Announcement::create([
+    //         'title' => $request->title,
+    //         'body' => $request->body,
+    //         'program_id' => $request->program_id,
+    //         'course_id' => $request->course_id,
+    //         'user_id' => auth()->id(),
+    //     ]);
+
+    //     return redirect()->route('announcements.show', Announcement::latest()->first());
+    // }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-            'image' => 'nullable|image|max:4096',
-            'program_id' => 'nullable|exists:programs,id',
-            'course_id' => 'nullable|exists:courses,id',
-        ]);
+{
+    $request->validate([
+        'title' => 'required',
+        'body' => 'required',
+        'image' => 'nullable|image|max:4096',
+        'program_id' => 'nullable|exists:programs,id',
+        'course_id' => 'nullable|exists:courses,id',
+    ]);
 
-        if ($request->hasFile('image')) {
-            $announcement = Announcement::create([
-                'title' => $request->title,
-                'body' => $request->body,
-                'program_id' => $request->program_id,
-                'course_id' => $request->course_id,
-                'user_id' => auth()->id(),
-            ]);
+    // Create the announcement with or without an image
+    $announcementData = [
+        'title' => $request->title,
+        'body' => $request->body,
+        'program_id' => $request->program_id,
+        'course_id' => $request->course_id,
+        'user_id' => auth()->id(),
+    ];
 
-            $announcement->addMediaFromRequest('image')->toMediaCollection('announcement-images');
-            return redirect()->route('announcements.index');
-        }
+    $announcement = Announcement::create($announcementData);
 
-        Announcement::create([
-            'title' => $request->title,
-            'body' => $request->body,
-            'program_id' => $request->program_id,
-            'course_id' => $request->course_id,
-            'user_id' => auth()->id(),
-        ]);
-
-        return redirect()->route('announcements.index');
+    // Handle image upload if present, otherwise set a default image
+    if ($request->hasFile('image')) {
+        $announcement->addMediaFromRequest('image')->toMediaCollection('announcement-images');
+    } else {
+        // Add default image if none uploaded
+        $defaultImagePath = public_path('assets/images/announcements/default.avif');
+        $announcement->addMedia($defaultImagePath)->toMediaCollection('announcement-images');
     }
+
+    return redirect()->route('announcements.show', $announcement);
+}
+
 
 
     public function edit(Announcement $announcement)

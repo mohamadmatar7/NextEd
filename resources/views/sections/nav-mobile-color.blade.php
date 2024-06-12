@@ -53,11 +53,7 @@
                 <img src="{{ asset('assets/icons/nav/notifications.svg') }}" alt="Notifications" class="h-6 w-8 mr-2">
                 <span class="text-sm">Notifications</span>
             </a>
-            <a href="#"
-                class="mt-1 group flex items-center justify-start px-2 py-2 text-base leading-6 font-medium rounded-e-full {{ Route::currentRouteName() == 'messages' ? 'bg-blue-700 dark:bg-gray-900 text-white' : 'bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white' }}">
-                <img src="{{ asset('assets/icons/nav/messages.svg') }}" alt="Messages" class="h-6 w-8 mr-2">
-                <span class="text-sm">Messages</span>
-            </a>
+
         </nav>
 
         <hr class="border-primaryLight my-4">

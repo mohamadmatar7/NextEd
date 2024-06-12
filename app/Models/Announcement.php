@@ -15,6 +15,8 @@ class Announcement extends Model implements HasMedia
     protected $fillable = [
         'title',
         'body',
+        'program_id',
+        'course_id',
         'user_id',
     ];
 

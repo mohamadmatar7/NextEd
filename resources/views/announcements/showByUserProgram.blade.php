@@ -4,7 +4,10 @@
 <x-app-layout>
 
 <x-group-cards title="{{ __('template.Program Announcements') }}"
-            :isPagination="$announcementsPrograms->links('components.pagination')">
+            :isPagination="$announcementsPrograms->links('components.pagination')"
+            :routeCreate="route('announcements.create')"
+               routeTitle="{{ __('template.Announcement') }} {{ __('template.Create') }}"
+            >
         @foreach($announcementsPrograms as $announcement)
             <x-group-card :route="route('announcements.show', ['announcement' => $announcement['id']])"
                           :title="$announcement['title']"

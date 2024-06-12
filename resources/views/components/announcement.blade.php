@@ -10,8 +10,10 @@
         <a href="{{ route('announcements.show', ['announcement' => $item->id]) }}"
             class="flex flex-col p-4 border-gray-200 dark:border-gray-600 @if(!$loop->last) border-b @endif">
             <div class="bg-gray-100 dark:bg-gray-700 rounded-lg shadow-md">
-                @if ($item->image)
-                <img src="{{ $item->image }}" alt="{{ $item->title }}" class="w-full h-24 object-cover">
+                @if($item->hasMedia('announcement-images'))
+                    <img src="{{ $item->getFirstMediaUrl('announcement-images') }}" alt="{{ $item->title }}" class="w-full h-24 object-cover">
+                @else
+                <img src="{{ asset('assets/images/announcements/default.png') }}" alt="{{ $item->title }}" class="w-full h-24 object-cover">
                 @endif
                 <div class="px-2 py-4">
                     <h3 class="text-xl font-bold dark:text-white">{{ $item->title }}</h3>

@@ -88,6 +88,9 @@ Route::middleware('auth')->group(function () {
         // storeCoursesToUser
         Route::post('/users/{user}/store-courses', [UserController::class, 'storeCoursesToUser'])->name('users.storeCoursesToUser');
 
+        Route::delete('/announcements/{announcement}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
+        Route::patch('/announcements/{announcement}', [AnnouncementController::class, 'update'])->name('announcements.update');
+        Route::get('/announcements/{announcement}/edit', [AnnouncementController::class, 'edit'])->name('announcements.edit');
     });
 
     // ensure that the user is an administrator
@@ -104,6 +107,11 @@ Route::middleware('auth')->group(function () {
         Route::get('/users/role/{role}', [UserController::class, 'showByRole'])->name('users.showByRole');
         Route::get('/programs/{program}/courses/{course}/lessons/{lessonId}/attendance', [AttendanceController::class, 'showAttendanceForm'])->name('courses.lessons.attendance.form');
         Route::post('/programs/{program}/courses/{course}/lessons/{lessonId}/attendance', [AttendanceController::class, 'submitAttendance'])->name('attendance.submit');
+
+        // create announcement
+        Route::get('/announcements/create', [AnnouncementController::class, 'create'])->name('announcements.create');
+        Route::post('/announcements', [AnnouncementController::class, 'store'])->name('announcements.store');
+
 
     });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -124,10 +132,7 @@ Route::middleware('auth')->group(function () {
     // announcements+
     Route::get('/announcements', [AnnouncementController::class, 'index'])->name('announcements.index');
     Route::get('/announcements/program', [AnnouncementController::class, 'showAnnouncementsByUserProgram'])->name('announcements.showByUserProgram');
-    Route::post('/announcements', [AnnouncementController::class, 'store'])->name('announcements.store');
-    Route::delete('/announcements/{announcement}', [AnnouncementController::class, 'destroy'])->name('announcements.destroy');
-    Route::patch('/announcements/{announcement}', [AnnouncementController::class, 'update'])->name('announcements.update');
-    Route::get('/announcements/{announcement}/edit', [AnnouncementController::class, 'edit'])->name('announcements.edit');
+
     Route::get('/announcements/{announcement}', [AnnouncementController::class, 'show'])->name('announcements.show');
 
 

@@ -5,7 +5,8 @@
 
 <x-group-cards title="{{ __('template.General Announcements') }}"
                :isPagination="$announcements->links('components.pagination')"
-        >
+               :routeCreate="route('announcements.create')"
+               routeTitle="{{ __('template.Announcement') }} {{ __('template.Create') }}">
         @foreach($announcements as $announcement)
             <x-group-card :route="route('announcements.show', ['announcement' => $announcement['id']])"
                           :title="$announcement['title']"
