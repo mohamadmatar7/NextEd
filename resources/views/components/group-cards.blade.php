@@ -2,6 +2,9 @@
     <div class="bg-white dark:bg-gray-800 shadow-xl w-full h-full lg:py-2">
         <div class="py-6 px-4 sm:px-10 bg-white dark:bg-gray-800">
             <x-breadcrumb />
+            @if (@$tabs)
+                <x-tabs-courses :items="$tabs" />
+            @endif
             <div class="flex justify-between items-baseline">
                 <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
                     {{ $title }}

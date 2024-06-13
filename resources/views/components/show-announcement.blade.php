@@ -39,7 +39,7 @@
                     <div class="mx-auto grid justify-center px-4 md:grid-cols-2 md:gap-6 md:px-8 lg:grid-cols-3">
                         @foreach ($relatedAnnouncements as $key => $article)
                         <article class="w-full mx-auto my-4 flex flex-col overflow-hidden rounded-lg border border-gray-300 bg-white text-gray-900 transition hover:translate-y-2 hover:shadow-lg">
-                            <a href="{{ $relatedLink }}"
+                            <a href="{{ route('announcements.show', ['announcement' => $article->id]) }}"
                                 class="flex flex-col h-full">
                                 @if($article->hasMedia('announcement-images'))
                                     <img src="{{ $article->getFirstMediaUrl('announcement-images') }}" class="h-56 w-full object-cover" alt="{{ $article->title }}" />

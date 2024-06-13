@@ -4,9 +4,7 @@
     <div class="mx-auto w-full">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl w-full lg:py-2 h-full">
             <div class="py-6 px-4 sm:px-10 bg-white dark:bg-gray-800">
-                <x-nav-vertical />
                 <x-breadcrumb />
-
                 <div class="flex flex-col mb-6 gap-y-3">
                     <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-100">
                         {{ __('template.Attendance') }} - {{ $lesson->name }}
