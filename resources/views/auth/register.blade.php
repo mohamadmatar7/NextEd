@@ -114,6 +114,7 @@
                                 <x-input-error :messages="$errors->get('nationality')" class="mt-2" />
                             </div>
 
+                            <!--
                             <div class="mt-4">
                                 <x-input-label for="dob" :value="__('template.Date of Birth')" />
                                 <x-date-input id="dob" class="block mt-1 w-full" type="date" name="dob"
@@ -121,6 +122,7 @@
                                     :max="now()->subYears(16)->format('Y-m-d')" />
                                 <x-input-error :messages="$errors->get('dob')" class="mt-2" />
                             </div>
+                            -->
 
                             <!-- Phone -->
                             <div class="mt-4">
