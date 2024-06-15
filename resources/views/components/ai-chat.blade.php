@@ -16,7 +16,7 @@
         const chatOutput = document.getElementById('chat-output');
         const userInput = document.getElementById('user-input');
         const sendButton = document.getElementById('send-btn');
-        const openAIApiKey = 'sk-proj-hb1xGuqlzibCFoIV4rxuT3BlbkFJJYPvu6O1BRglrPwpnrlq';
+        const openAIApiKey = '';
 
         chatIcon.addEventListener('click', () => {
             chatContent.classList.toggle('hidden');
