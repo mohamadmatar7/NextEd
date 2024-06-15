@@ -12,7 +12,6 @@
 
     @foreach ($segments as $index => $breadcrumb)
       @if ($index < count($segments) - 1)
-        <!-- Intermediate breadcrumbs -->
         <li>
           <div class="flex items-center">
             <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">

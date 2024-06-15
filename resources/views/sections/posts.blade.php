@@ -20,7 +20,7 @@
                 <!--middle create Post above icons-->
                 @auth
                 <div class="flex">
-                    <div class="m-2 w-10 py-1">
+                    <a href="{{ route('users.showSpecificUser', ['role' => \App\Enums\Role::getDescription(auth()->user()->role), 'user' => auth()->id()]) }}" class="m-2 w-10 py-1">
                         @if (auth()->user()->getFirstMedia('avatars'))
                         <img class="inline-block h-10 w-10 rounded-full"
                             src="{{ auth()->user()->getFirstMedia('avatars')->getUrl() }}"
@@ -30,7 +30,7 @@
                             src="{{ asset('assets/images/avatars/avatar-' . strtolower(auth()->user()->gender) . '.svg') }}"
                             alt="{{ auth()->user()->name }}">
                         @endif
-                    </div>
+                    </a>
                     <div class="flex-1 px-2 pt-2 mt-2">
                         <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf

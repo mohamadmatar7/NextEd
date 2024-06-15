@@ -93,10 +93,6 @@ class CommentController extends Controller
     {
         $comment = Comment::findOrFail($comment->id);
 
-        if ($comment->user_id !== auth()->id()) {
-            return back();
-        }
-
         $comment->delete();
 
         return back();

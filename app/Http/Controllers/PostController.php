@@ -65,6 +65,8 @@ class PostController extends Controller
         return back();
     }
 
+    
+
     /**
      * Display the specified resource.
      */
@@ -117,11 +119,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post = Post::findOrFail($post->id);
-
-        if ($post->user_id !== auth()->id()) {
-            return back();
-        }
-
         $post->delete();
 
         return back();

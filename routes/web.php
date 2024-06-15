@@ -122,6 +122,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/users/role/{role}/{user}', [UserController::class, 'showSpecificUser'])->name('users.showSpecificUser');
 
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
     Route::get('/community', [PostController::class, 'index'])->name('posts.index');
 
     // likes
@@ -182,6 +185,8 @@ Route::middleware('auth')->group(function () {
 
     // comments
     Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+
 });
 
 require __DIR__.'/auth.php';

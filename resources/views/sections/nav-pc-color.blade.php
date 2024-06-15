@@ -5,11 +5,13 @@
             <img src="{{ asset('assets/icons/nav/home.svg') }}" alt="Home" class="h-6 w-8">
             <span class="text-sm">{{ __('template.Home') }}</span>
         </a>
+        <!--
         <a href="{{ route('dashboard') }}"
             class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full {{ Route::currentRouteName() == 'dashboard' ? 'bg-blue-700 dark:bg-gray-900 text-white' : 'bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white' }}">
             <img src="{{ asset('assets/icons/nav/dashboard.svg') }}" alt="Dashboard" class="h-6 w-8">
             <span class="text-sm">{{ __('template.Dashboard') }}</span>
         </a>
+        -->
         @can('is-administrator')
         <a href="{{ route('categories.index') }}"
             class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full {{ request()->routeIs('categories.*') ? 'bg-blue-700 dark:bg-gray-900 text-white' : 'bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white' }}">
@@ -37,8 +39,8 @@
             <img src="{{ asset('assets/icons/nav/chat.svg') }}" alt="Chat" class="h-6 w-8">
             <span class="text-sm">Chat</span>
         </a>
-        <a href="#"
-            class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full {{ request()->routeIs('notifications') ? 'bg-blue-700 dark:bg-gray-900 text-white' : 'bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white' }}">
+        <a href="{{ route('announcements.showByUserProgram') }}"
+            class="mt-1 group flex flex-col items-center justify-center px-2 py-2 text-base leading-6 font-medium rounded-e-full {{ request()->routeIs('announcements.*') ? 'bg-blue-700 dark:bg-gray-900 text-white' : 'bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 hover:text-white' }}">
             <img src="{{ asset('assets/icons/nav/notifications.svg') }}" alt="Notifications" class="h-6 w-8">
             <span class="text-sm">Notifications</span>
         </a>

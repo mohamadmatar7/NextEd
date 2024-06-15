@@ -15,7 +15,7 @@
                           :bodyClass="'flex flex-col gap-y-1'"
                           :subtitle="$announcement['created_at']->format('F d, Y')"
                           :iconContainerClass="'w-full'"
-                          :icon="$announcement['image']"
+                          :icon="asset($announcement->getFirstMediaUrl('announcement-images') ?: 'assets/images/announcements/default1.png')"
                           :iconClass="'w-full h-40 object-cover'"
             />
         @endforeach

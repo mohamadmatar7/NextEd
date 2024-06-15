@@ -13,7 +13,7 @@
 
         @if (auth()->check() && auth()->user()->id == $userId || auth()->check() && auth()->user()->role == 4)
 
-        <x-dropdown-comment  :userId="$userId" :Id="$Id" />
+        <x-dropdown-comment  :userId="$userId" :Id="$Id"  :type="$itemType"  :typeId="$Id" />
         
         @endif
     </footer>

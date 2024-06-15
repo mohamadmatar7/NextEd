@@ -1,7 +1,7 @@
 <li>
     <!--Post-->
     <article class="@if($post->user->role == 1 || $post->user->role == 2 || $post->user->role == 3 || $post->user->role == 4) border-l-8 border-blue-500 @endif">
-        <div class="flex p-4 pb-0 my-2">
+        <div class="flex p-4 pb-0 my-2 relative">
             <a class="block" href="{{ route('users.showSpecificUser', ['role' => \App\Enums\Role::getDescription($post->user->role), 'user' => $post->user->id]) }}">
                 <div class="flex items-center">
                     <div>
@@ -23,6 +23,8 @@
                     </div>
                 </div>
             </a>
+
+            <x-dropdown-comment :userId="$post->user->id" :top="true" :type="'post'"  :typeId="$post->id" />
         </div>
 
 
@@ -34,7 +36,7 @@
             @if ($post->getFirstMedia('post-images'))
             <div class="md:flex-shrink pr-6 pt-3">
                 <div class="bg-cover bg-no-repeat bg-center rounded-lg w-full h-64">
-                    <img class="w-full h-full object-fill" src="{{ $post->getMedia('post-images')->last()->getUrl() }}"
+                    <img class="w-full h-full object-cover" src="{{ $post->getMedia('post-images')->last()->getUrl() }}"
                         alt="{{ $post->user->name }}">
                 </div>
             </div>

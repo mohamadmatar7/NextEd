@@ -1,8 +1,7 @@
 @section('title', __('template.Students') . ' - ' . @$course->name)
 
 <x-app-layout>
-
-@php
+                 @php
                     $items = [
                         [
                             'route' => route('courses.assignments.showAssignmentsByUser', [ $program->id, $course->id, auth()->user()->id]),

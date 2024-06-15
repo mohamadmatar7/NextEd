@@ -80,10 +80,3 @@
             @endslot
         </x-dynamic-table>
 </x-app-layout>
-
-
-
-
-
-
-
